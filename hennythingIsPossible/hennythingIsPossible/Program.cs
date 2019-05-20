@@ -6,7 +6,11 @@ namespace hennythingIsPossible
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Controller obj = new Controller();
+            //InfoCenter inf = new InfoCenter("", "");
+            //inf.Alcohol();
+
         }
     }
 }
+
