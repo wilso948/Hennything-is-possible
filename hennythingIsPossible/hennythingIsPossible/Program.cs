@@ -10,22 +10,24 @@ namespace hennythingIsPossible
             //InfoCenter inf = new InfoCenter("", "");
             //inf.Alcohol();
 
-            //obj.FilterListByCategory(obj.Menu, "rum");
-            var filteredList = obj.FilterListByCategory(obj.Menu, "rum");
+            obj.FilterListByCategory(obj.Menu, "rum");
+            var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
 
             foreach (var item in filteredList)
             {
                 Console.WriteLine(item.Name);
-                Console.WriteLine(item.Price);
+                //Console.WriteLine(item.Price);
             }
 
+            //Console.ReadLine();
+
+            obj.PickLiquorFromFilteredList(filteredList);
+
+            Console.WriteLine($"{obj.CurrentLiquorPick.Name} has been added.");
+
             Console.ReadLine();
 
-            obj.PickAlcoholFromFilteredList(filteredList);
 
-            Console.WriteLine($"{obj.currentalcoholPick.Name} has been added.");
-
-            Console.ReadLine();
         }
     }
 }

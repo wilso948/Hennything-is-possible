@@ -8,16 +8,18 @@ namespace hennythingIsPossible
     {
         public static void Run()
         {
+            //This is Matt's old stuff. We can get rid of it as we move functionality over to the main stuff. 
+
             HennyArt.DisplayHennyArt();
 
             //initialize inventory
-            //var inventoryList = Inventory.CreateInventoryList(Inventory.ImportFileToString());
-            var customerOrder = new Order();
+            var inventoryList = Inventory.CreateInventoryList(Inventory.ImportFileToString());
+            //var customerOrder = new Order();
 
             //switch case for menu
             //display main menu: 
             //1-display inventory
-            //DisplayInventoryList(inventoryList);
+            DisplayInventoryList(inventoryList);
             //2-add liquor to order
             //3-see order
             //4-cash out
@@ -35,6 +37,8 @@ namespace hennythingIsPossible
                 Console.WriteLine($"Name: {item.Name}");
                 Console.WriteLine($"Price: {item.Price}");
                 Console.WriteLine($"Description: {item.Description}");
+                Console.WriteLine($"Price: {item.Price}");
+
                 Console.WriteLine();
             }
         }

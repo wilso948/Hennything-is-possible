@@ -13,7 +13,7 @@ namespace hennythingIsPossible
             try
             {
                 // Open the text file using a stream reader.
-                using (StreamReader stream = new StreamReader("TestFile.txt"))
+                using (StreamReader stream = new StreamReader("HennyFile.txt"))
                 {
                     // Read the stream to a string, and write the string to the console.
                     entireFileString = stream.ReadToEnd();
@@ -27,23 +27,19 @@ namespace hennythingIsPossible
             return entireFileString;
         }
 
-        //public static List<Liquor> CreateInventoryList(string inventoryString)
-        //{
-        //    var inventoryList = new List<Liquor>();
-        //    var result = inventoryString.Split(new string[] { "\n" }, StringSplitOptions.None);
+        public static List<Liquor> CreateInventoryList(string inventoryString)
+        {
+            var inventoryList = new List<Liquor>();
+            var result = inventoryString.Split(new string[] { "\n" }, StringSplitOptions.None);
 
-        //    foreach (var item in result)
-        //    {
-        //        var liquorDetail = item.Split(",");
-        //        var liqour = new Liquor();
-        //        liqour.Name = liquorDetail[0];
-        //        liqour.Price = double.Parse(liquorDetail[1]);
-        //        liqour.Description = liquorDetail[2];
-        //        inventoryList.Add(liqour);
+            foreach (var item in result)
+            {
+                var liquorDetail = item.Split(",");
+                var liqour = new Liquor(liquorDetail[0], liquorDetail[1], liquorDetail[2], double.Parse(liquorDetail[3]));
+                inventoryList.Add(liqour);
+            }
+            return inventoryList;
 
-        //    }
-        //    return inventoryList;
-
-        //}
+        }
     }
 }
