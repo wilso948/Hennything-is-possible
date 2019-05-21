@@ -8,47 +8,18 @@ namespace hennythingIsPossible
     {
 
         public List<Liquor> Menu { get; set; }
-        public Liquor currentalcoholPick { get; set; }
+
+        public Liquor CurrentLiquorPick { get; set; }
 
         MenuView obj;
         ConsoleColor color;
+
         public Controller()
         {
-            Menu = new List<Liquor>();
+            Menu = Inventory.CreateInventoryList(Inventory.ImportFileToString());
 
-            Menu.Add(new Liquor("Malibu Carbiean Rum", "Rum", "", 21.99));
-            Menu.Add(new Liquor("Captain Morgan Spiced Rum", "Rum", "", 31.99));
-            Menu.Add(new Liquor("Bacardi Rum Superior", "Rum", "", 21.00));
-            Menu.Add(new Liquor("Zaya Gran Reserva Rum", "Rum", "", 31.00));
-            Menu.Add(new Liquor("Havan Club Anejo", "Rum", "", 21.99));
-            Menu.Add(new Liquor("Titos Handmade Vodka", "Vodka", "", 13.00));
-            Menu.Add(new Liquor("Grey Goose", "Vodka", "", 32.00));
-            Menu.Add(new Liquor("Smirnoff Vodka", "Vodka", "", 10.50));
-            Menu.Add(new Liquor("Absolute Vodka", "Vodka", "", 23.00));
-            Menu.Add(new Liquor("Ketel One", "Vodka", "", 23.00));
-            Menu.Add(new Liquor("Hendricks Gin", "Gin", "", 31.99));
-            Menu.Add(new Liquor("Bombay Sapphire", "Gin", "", 21.99));
-            Menu.Add(new Liquor("Tanqueray Gin London Dry", "Gin", "", 21.99));
-            Menu.Add(new Liquor("Beefeather London Dry", "Gin", "", 24.99));
-            Menu.Add(new Liquor("Seagrams Extra Dry", "Gin", "", 27.00));
-            Menu.Add(new Liquor("Clase Azul Reposado", "Tequila", "", 31.00));
-            Menu.Add(new Liquor("Don Julio", "Tequila", "", 41.99));
-            Menu.Add(new Liquor("Patron Silver", "Tequila", "", 35.00));
-            Menu.Add(new Liquor("Corralejo Reposado", "Tequila", "", 48.00));
-            Menu.Add(new Liquor("Cazadoej Reposado", "Tequila", "", 36.50));
-            Menu.Add(new Liquor("Remy Martin", "Brandy", "", 53.00));
-            Menu.Add(new Liquor("Hennessy Cognac", "Brandy", "", 33.00));
-            Menu.Add(new Liquor("Courvoisier Cognac", "Brandy", "", 41.99));
-            Menu.Add(new Liquor("Paul Masson", "Brandy", "", 21.99));
-            Menu.Add(new Liquor("St.Remy VSOP", "Brandy", "", 21.99));
-            Menu.Add(new Liquor("Jack Daniels", "Whiskey", "", 21.00));
-            Menu.Add(new Liquor("The Glenliver Scotch", "Whiskey", "", 51.00));
-            Menu.Add(new Liquor("Crown Royal", "Whiskey", "", 21.99));
-            Menu.Add(new Liquor("Johnnie Walker", "Whiskey", "", 33.00));
-            Menu.Add(new Liquor("Jameson Irish Whiskey", "Whiskey", "", 32.00));
-            Menu.Add(new Liquor("Smirnoff Vodka", "Vodka", "", 21.50));
-            obj = new MenuView(Menu);
-            obj.DisplayMenu();
+            //obj = new MenuView(Menu);
+            //obj.DisplayMenu();
             Console.WriteLine();
             //Order();
         }
@@ -74,7 +45,7 @@ namespace hennythingIsPossible
                     if (choice >= 1 && choice <= 31)
                     {
                     // Allow the user to choose a quantity for the ordered item.
-                    QuentityCheck:
+                    QuantityCheck:
                         {
 
                             Console.WriteLine("Please enter the quantity: ");
@@ -83,7 +54,7 @@ namespace hennythingIsPossible
                             {
 
                                 Console.WriteLine("you entered unvalid number for quantity!!");
-                                goto QuentityCheck;// give the user a nother chance to choose a valid number for quantity
+                                goto QuantityCheck;// give the user a nother chance to choose a valid number for quantity
                             }
                         }
                         OrderedItems.Add(new OrderedItems(Menu[choice - 1].Name, Menu[choice - 1].Price, quantityPerItem));
@@ -138,20 +109,20 @@ namespace hennythingIsPossible
 
         public  List<Liquor> FilterListByCategory(List<Liquor> menu, string category)
         {
-            var filteredAlcoholList = new List<Liquor>();
+            var filteredLiquorList = new List<Liquor>();
 
-            foreach (var alcohol in menu)
+            foreach (var liquor in menu)
             {
-                if (alcohol.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
+                if (liquor.Category.Equals(category, StringComparison.OrdinalIgnoreCase))
                 {
-                    filteredAlcoholList.Add(alcohol);
+                    filteredLiquorList.Add(liquor);
                 }
             }
 
-            return filteredAlcoholList;
+            return filteredLiquorList;
         }
 
-        public void PickAlcoholFromFilteredList(List<Liquor> filteredList)
+        public void PickLiquorFromFilteredList(List<Liquor> filteredList)
         {
             Console.WriteLine("Pick an alcohol to choose from the chosen category.");
             foreach (var item in filteredList)
@@ -159,16 +130,18 @@ namespace hennythingIsPossible
                 Console.WriteLine($"{item.Name}. {item.Price}");
             }
 
-            var pickAlcohol = Console.ReadLine();
+            var pickLiquor = Console.ReadLine();
 
             foreach (var item in filteredList)
             {
-                if (pickAlcohol.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
+                if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
                 {
-                    currentalcoholPick = item;
+                    CurrentLiquorPick = item;
                 }
             }
         }
+
+
 
     }
 }
