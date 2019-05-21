@@ -1,0 +1,31 @@
+Malibu Carbiean Rum,Rum,,21.99
+Captain Morgan Spiced Rum,Rum,,31.99
+Bacardi Rum Superior,Rum,,21.00
+Zaya Gran Reserva Rum,Rum,,31.00
+Havana Club Anejo,Rum,,21.99
+Titos Handmade Vodka,Vodka,,13.00
+Grey Goose,Vodka,,32.00
+Smirnoff Vodka,Vodka,,10.50
+Absolute Vodka,Vodka,,23.00
+Ketel One,Vodka,,23.00
+Hendricks Gin,Gin,,31.99
+Bombay Sapphire,Gin,,21.99
+Tanqueray Gin London Dry,Gin,,21.99
+Beefeather London Dry,Gin,,24.99
+Seagrams Extra Dry,Gin,,27.00
+Clase Azul Reposado,Tequila,,31.00
+Don Julio,Tequila,,41.99
+Patron Silver,Tequila,,35.00
+Corralejo Reposado,Tequila,,48.00
+Cazadoej Reposado,Tequila,,36.50
+Remy Martin,Brandy,,53.00
+Hennessy Cognac,Brandy,,33.00
+Courvoisier Cognac,Brandy,,41.99
+Paul Masson,Brandy,,21.99
+St.Remy VSOP,Brandy,,21.99
+Jack Daniels,Whiskey,,21.00
+The Glenliver Scotch,Whiskey,,51.00
+Crown Royal,Whiskey,,21.99
+Johnnie Walker,Whiskey,,33.00
+Jameson Irish Whiskey,Whiskey,,32.00
+Smirnoff Vodka,Vodka,,21.99
