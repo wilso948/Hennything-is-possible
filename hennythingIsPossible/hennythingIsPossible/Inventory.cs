@@ -13,7 +13,8 @@ namespace hennythingIsPossible
             try
             {
                 // Open the text file using a stream reader.
-                using (StreamReader stream = new StreamReader("HennyFile.txt"))
+                //var path = Path.Combine(Directory.GetCurrentDirectory(), "\\fileName.txt");
+                using (StreamReader stream = new StreamReader(Path.Combine(Directory.GetCurrentDirectory(), "HennyFile.txt")))
                 {
                     // Read the stream to a string, and write the string to the console.
                     entireFileString = stream.ReadToEnd();
