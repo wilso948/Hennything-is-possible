@@ -30,49 +30,54 @@ namespace hennythingIsPossible
             {
                 int index = 1; // we gotta figure out a way to start the index at 1 so it shows 1 on the screen
                 Console.WriteLine("Which one would you like to learn about?");
-                foreach (InfoCenter Type in Types)
-                {
-                    Console.WriteLine(index + ".) " + Type.Name);
 
+                foreach (var item in Types)
+                {
+                    Console.WriteLine(index + ".) " + item.Name);
                     index++;
                 }
+
                 int userInput = int.Parse(Console.ReadLine());
-                if (userInput == 1)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
 
-                }
-                else if (userInput == 2)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
+                Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                Console.ReadLine();
 
-                }
-                else if (userInput == 3)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
+                //if (userInput == 1)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
 
-                }
-                else if (userInput == 4)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
+                //}
+                //else if (userInput == 2)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
 
-                }
-                else if (userInput == 5)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
+                //}
+                //else if (userInput == 3)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
 
-                }
-                else if (userInput == 6)
-                {
-                    Console.WriteLine(" {0} is {1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
-                    Console.ReadLine();
+                //}
+                //else if (userInput == 4)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
 
-                }
+                //}
+                //else if (userInput == 5)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
+
+                //}
+                //else if (userInput == 6)
+                //{
+                //    Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
+                //    Console.ReadLine();
+
+                //}
                 Console.WriteLine("Do you want to run it again? (y/n)");
                 string answer = Console.ReadLine().ToLower();
                 if (answer == "n")

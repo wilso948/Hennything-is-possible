@@ -7,7 +7,8 @@ namespace hennythingIsPossible
         static void Main(string[] args)
         {
             Controller obj = new Controller();
-            
+
+            HennyArt.DisplayHennyArt();
 
             switch (Menu.DisplayMainMenu())
             {
