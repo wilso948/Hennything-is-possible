@@ -9,9 +9,10 @@ namespace hennythingIsPossible
         public static Enum DisplayMainMenu()
         {
             Console.WriteLine("-- Main Menu --");
-            Console.WriteLine("Display Inventory");
-            Console.WriteLine("Add Product to Order");
-            Console.WriteLine("Cash Out");
+            Console.WriteLine("1). Display Inventory");
+            Console.WriteLine("2). Add Product to Order");
+            Console.WriteLine("3). Liquor Info Center");
+            Console.WriteLine("4). Cash Out");
             Console.Write("Select an option: ");
 
             if (Enum.TryParse<MenuEnum>(Console.ReadLine(), out var userMenuSelection))
