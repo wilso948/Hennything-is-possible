@@ -6,5 +6,9 @@ namespace hennythingIsPossible
 {
     public enum MenuEnum
     {
+        DisplayInventory = 1,
+        AddProductToOrder = 2,
+        LiquorInfoCenter = 3,
+        CashOut = 4
     }
 }

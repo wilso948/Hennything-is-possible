@@ -6,9 +6,12 @@ namespace hennythingIsPossible
 {
     public class HennyApp
     {
+
+        //This is Matt's old stuff. We can get rid of it as we move functionality over to the main stuff. 
+
+
         public static void Run()
         {
-            //This is Matt's old stuff. We can get rid of it as we move functionality over to the main stuff. 
 
             HennyArt.DisplayHennyArt();
 

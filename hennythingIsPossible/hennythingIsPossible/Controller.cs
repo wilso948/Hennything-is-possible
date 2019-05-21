@@ -124,12 +124,11 @@ namespace hennythingIsPossible
 
         public void PickLiquorFromFilteredList(List<Liquor> filteredList)
         {
-            Console.WriteLine("Pick an alcohol to choose from the chosen category.");
-            foreach (var item in filteredList)
-            {
-                Console.WriteLine($"{item.Name}. {item.Price}");
-            }
 
+            MenuView filteredListView = new MenuView(filteredList);
+            filteredListView.DisplayLiquorMenu();
+
+            Console.Write("\nPick an alcohol to choose from the chosen category: ");
             var pickLiquor = Console.ReadLine();
 
             foreach (var item in filteredList)
@@ -139,8 +138,8 @@ namespace hennythingIsPossible
                     CurrentLiquorPick = item;
                 }
             }
+            Console.WriteLine($"{CurrentLiquorPick.Name} has been added.");
         }
-
 
 
     }

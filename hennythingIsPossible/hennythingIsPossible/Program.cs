@@ -7,24 +7,28 @@ namespace hennythingIsPossible
         static void Main(string[] args)
         {
             Controller obj = new Controller();
-            //InfoCenter inf = new InfoCenter("", "");
-            //inf.Alcohol();
+            
 
-            obj.FilterListByCategory(obj.Menu, "rum");
-            var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
-
-            foreach (var item in filteredList)
+            switch (Menu.DisplayMainMenu())
             {
-                Console.WriteLine(item.Name);
-                //Console.WriteLine(item.Price);
+                case MenuEnum.DisplayInventory:
+                    var entireMenuList = new MenuView(obj.Menu);
+                    entireMenuList.DisplayLiquorMenu();                
+                    break;
+                case MenuEnum.AddProductToOrder:
+                    var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
+                    obj.PickLiquorFromFilteredList(filteredList);
+                    break;
+                case MenuEnum.LiquorInfoCenter:
+                    InfoCenter inf = new InfoCenter("", "");
+                    inf.Alcohol();
+                    break;
+                case MenuEnum.CashOut:
+                    break;
+                default:
+                    break;
             }
-
-            //Console.ReadLine();
-
-            obj.PickLiquorFromFilteredList(filteredList);
-
-            Console.WriteLine($"{obj.CurrentLiquorPick.Name} has been added.");
-
+       
             Console.ReadLine();
 
 
