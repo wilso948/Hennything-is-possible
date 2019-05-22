@@ -19,7 +19,7 @@ namespace hennythingIsPossible
 
         public Enum PaymentType { get; set; }
 
-        public double Subtotal { get; set; }
+        public double SubTotal { get; set; }
 
         public double SalesTaxAmount { get; set; }
 
@@ -33,11 +33,16 @@ namespace hennythingIsPossible
 
         public string CreditCardCvv { get; set; }
 
-        public void CalculateSubtotal()
+        public void CalculateOrderTotal()
         {
             //logic to calculate subtotals and set properties:
             //foreach item in LiquorOrderList, Subtotal = item.Price + Subtotal
-            //GrandTotal = SubTotal + (SalesTaxAmount * SubTotal)
+            foreach (var liquor in LiquorOrderList)
+            {
+                SubTotal = liquor.Price + SubTotal;
+            }
+
+            GrandTotal = SubTotal + (SalesTaxAmount * SubTotal);
         }
 
     }
