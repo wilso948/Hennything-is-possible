@@ -13,6 +13,8 @@ namespace hennythingIsPossible
             Console.WriteLine("2). Add Product to Order");
             Console.WriteLine("3). Liquor Info Center");
             Console.WriteLine("4). Cash Out");
+            Console.WriteLine("5). Quit");
+
             Console.Write("Select an option: ");
 
             if (Enum.TryParse<MenuEnum>(Console.ReadLine(), out var userMenuSelection))

@@ -9,6 +9,7 @@ namespace hennythingIsPossible
         DisplayInventory = 1,
         AddProductToOrder = 2,
         LiquorInfoCenter = 3,
-        CashOut = 4
+        CashOut = 4,
+        Quit = 5
     }
 }
