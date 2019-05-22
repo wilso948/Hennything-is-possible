@@ -158,6 +158,20 @@ namespace hennythingIsPossible
                 Console.WriteLine(item.Price);
             }
         }
+
+        public string PromptUserForLiquorType()
+        {
+            var liquorTypes = Enum.GetValues(typeof(LiquorType));
+            foreach (var liquor in liquorTypes)
+            {
+                Console.WriteLine($"{liquor.ToString()}");
+            }
+            Console.Write("Pick a liquor: ");
+           
+            return Console.ReadLine(); ;
+
+        }
+
     }
 }
 
