@@ -8,8 +8,9 @@ namespace hennythingIsPossible
     {
         static void Main(string[] args)
         {
-            Controller obj = new Controller();        
-
+            Controller obj = new Controller();
+            OrderedItems customerOrder = new OrderedItems();
+            
             HennyArt.DisplayHennyArt();
 
             switch (Menu.DisplayMainMenu())
@@ -21,13 +22,16 @@ namespace hennythingIsPossible
                 case MenuEnum.AddProductToOrder:
                     var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
                     obj.PickLiquorFromFilteredList(filteredList);
-                    obj.AddAlcoholToOrder(obj.CurrentLiquorPick);
+                    obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+                    customerOrder.CalculateSubtotal();
                     break;
                 case MenuEnum.LiquorInfoCenter:
                     InfoCenter inf = new InfoCenter("", "");
                     inf.Alcohol();
                     break;
                 case MenuEnum.CashOut:
+                    //Display customerOrder
+                    //Display payment options, choose payment, process payment
                     break;
                 default:
                     break;

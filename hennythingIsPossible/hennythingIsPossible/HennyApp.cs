@@ -46,25 +46,25 @@ namespace hennythingIsPossible
             }
         }
 
-        public static void AddProductToOrder(Order customerOrder, Liquor liquor, int quantity)
-        {
-            //add liquor to customerOrder, quantity number of times
-            //for int i=0, i<quantity, i++ ... customerOrder.LiquorOrderList.Add(liquor);
+        //public static void AddProductToOrder(Order customerOrder, Liquor liquor, int quantity)
+        //{
+        //    add liquor to customerOrder, quantity number of times
+        //    for int i = 0, i< quantity, i++...customerOrder.LiquorOrderList.Add(liquor);
 
-        }
+        //}
 
-        public static void DisplayOrder(Order customerOrder)
-        {
-            //foreach item in customerOrder, display liquor, quanitites, subtotal, salestax, grand total
-        }
+        //public static void DisplayOrder(Order customerOrder)
+        //{
+        //    foreach item in customerOrder, display liquor, quanitites, subtotal, salestax, grand total
+        //}
 
-        public static void ProcessPayment(Order orderList, PaymentType paymentType)
-        {
-            //if paymentType = PaymentType.Cash, then ask for amount and calculate change
-            //if paymentType = Check, then ask for check number
-            //if paymentType = Credit, then ask for credit card number, expiration, CVV
-            //possibly add order.Status. 
-        }
+        //public static void ProcessPayment(Order orderList, PaymentType paymentType)
+        //{
+        //    if paymentType = PaymentType.Cash, then ask for amount and calculate change
+        //    if paymentType = Check, then ask for check number
+        //    if paymentType = Credit, then ask for credit card number, expiration, CVV
+        //    possibly add order.Status.
+        //}
 
     }
 }
