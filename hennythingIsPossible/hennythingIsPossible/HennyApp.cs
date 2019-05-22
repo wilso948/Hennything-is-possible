@@ -13,7 +13,7 @@ namespace hennythingIsPossible
             OrderedItems customerOrder = new OrderedItems();
             customerOrder.SalesTaxAmount = 0.06;
             bool userWantsToQuit = false;
-
+         
             HennyArt.DisplayHennyArt();
 
             do
@@ -25,7 +25,7 @@ namespace hennythingIsPossible
                         entireMenuList.DisplayLiquorMenu();
                         break;
                     case MenuEnum.AddProductToOrder:
-                        var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
+                        var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
                         obj.PickLiquorFromFilteredList(filteredList);
                         obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
                         customerOrder.CalculateOrderTotal();
