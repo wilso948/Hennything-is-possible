@@ -21,6 +21,7 @@ namespace hennythingIsPossible
                 case MenuEnum.AddProductToOrder:
                     var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
                     obj.PickLiquorFromFilteredList(filteredList);
+                    obj.AddAlcoholToOrder(obj.CurrentLiquorPick);
                     break;
                 case MenuEnum.LiquorInfoCenter:
                     InfoCenter inf = new InfoCenter("", "");
