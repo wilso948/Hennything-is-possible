@@ -4,12 +4,14 @@ using System.Text;
 
 namespace hennythingIsPossible
 {
-    public class Controller
+    public class Controller : Order
     {
 
         public List<Liquor> Menu { get; set; }
 
         public Liquor CurrentLiquorPick { get; set; }
+
+        
 
         MenuView obj;
         ConsoleColor color;
@@ -17,6 +19,7 @@ namespace hennythingIsPossible
         public Controller()
         {
             Menu = Inventory.CreateInventoryList(Inventory.ImportFileToString());
+            LiquorOrderList = new List<Liquor>();
 
             //obj = new MenuView(Menu);
             //obj.DisplayMenu();
@@ -107,7 +110,7 @@ namespace hennythingIsPossible
             }
         }
 
-        public  List<Liquor> FilterListByCategory(List<Liquor> menu, string category)
+        public List<Liquor> FilterListByCategory(List<Liquor> menu, string category)
         {
             var filteredLiquorList = new List<Liquor>();
 
@@ -141,7 +144,21 @@ namespace hennythingIsPossible
             Console.WriteLine($"{CurrentLiquorPick.Name} has been added.");
         }
 
-
+        public void AddAlcoholToOrder(Liquor alcoholPick)
+        {
+            Console.WriteLine($"How many of {alcoholPick.Name} would you like? Please input a number.");
+            var quantitypick = int.Parse(Console.ReadLine());
+            for (int i = 0; i < quantitypick; i++)
+            {
+                LiquorOrderList.Add(alcoholPick);
+            }
+            //This portion is to verify that the object actually added to the list.
+            foreach (var item in LiquorOrderList)
+            {
+                Console.WriteLine(item.Name);
+                Console.WriteLine(item.Price);
+            }
+        }
     }
 }
 
