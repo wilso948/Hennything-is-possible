@@ -7,64 +7,56 @@ namespace hennythingIsPossible
     public class HennyApp
     {
 
-        //This is Matt's old stuff. We can get rid of it as we move functionality over to the main stuff. 
-
-
         public static void Run()
         {
+            Controller obj = new Controller();
+            OrderedItems customerOrder = new OrderedItems();
+            customerOrder.SalesTaxAmount = 0.06;
+            bool userWantsToQuit = false;
 
             HennyArt.DisplayHennyArt();
 
-            //initialize inventory
-            var inventoryList = Inventory.CreateInventoryList(Inventory.ImportFileToString());
-            //var customerOrder = new Order();
+            do
+            {
+                switch (Menu.DisplayMainMenu())
+                {
+                    case MenuEnum.DisplayInventory:
+                        var entireMenuList = new MenuView(obj.Menu);
+                        entireMenuList.DisplayLiquorMenu();
+                        break;
+                    case MenuEnum.AddProductToOrder:
+                        var filteredList = obj.FilterListByCategory(obj.Menu, "Rum");
+                        obj.PickLiquorFromFilteredList(filteredList);
+                        obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+                        customerOrder.CalculateOrderTotal();
+                        Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
+                        Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+                        break;
+                    case MenuEnum.LiquorInfoCenter:
+                        InfoCenter inf = new InfoCenter("", "");
+                        inf.Alcohol();
+                        break;
+                    case MenuEnum.CashOut:
+                        //Display customerOrder
+                        //Display payment options, choose payment, process payment
+                        break;
+                    case MenuEnum.Quit:
+                        Console.WriteLine("Bye!");
+                        userWantsToQuit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Try again");
+                        break;
+                }
 
-            //switch case for menu
-            //display main menu: 
-            //1-display inventory
-            DisplayInventoryList(inventoryList);
-            //2-add liquor to order
-            //3-see order
-            //4-cash out
+                Console.WriteLine("\n... press any key to continue ...");
+                Console.ReadKey();
+
+            } while (userWantsToQuit.Equals(false));
 
             Console.ReadLine();
         }
 
-        public static void DisplayInventoryList(List<Liquor> inventoryList)
-        {
-           
-            Console.WriteLine($"Total items: {inventoryList.Count}");
-
-            foreach (var item in inventoryList)
-            {
-                Console.WriteLine($"Name: {item.Name}");
-                Console.WriteLine($"Price: {item.Price}");
-                Console.WriteLine($"Description: {item.Description}");
-                Console.WriteLine($"Price: {item.Price}");
-
-                Console.WriteLine();
-            }
-        }
-
-        //public static void AddProductToOrder(Order customerOrder, Liquor liquor, int quantity)
-        //{
-        //    add liquor to customerOrder, quantity number of times
-        //    for int i = 0, i< quantity, i++...customerOrder.LiquorOrderList.Add(liquor);
-
-        //}
-
-        //public static void DisplayOrder(Order customerOrder)
-        //{
-        //    foreach item in customerOrder, display liquor, quanitites, subtotal, salestax, grand total
-        //}
-
-        //public static void ProcessPayment(Order orderList, PaymentType paymentType)
-        //{
-        //    if paymentType = PaymentType.Cash, then ask for amount and calculate change
-        //    if paymentType = Check, then ask for check number
-        //    if paymentType = Credit, then ask for credit card number, expiration, CVV
-        //    possibly add order.Status.
-        //}
 
     }
 }

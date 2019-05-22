@@ -22,7 +22,7 @@ namespace hennythingIsPossible
 
             //obj = new MenuView(Menu);
             //obj.DisplayMenu();
-            Console.WriteLine();
+            //Console.WriteLine();
             //Order();
         }
 

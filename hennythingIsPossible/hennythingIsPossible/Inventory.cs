@@ -45,5 +45,13 @@ namespace hennythingIsPossible
             return inventoryList;
 
         }
+
+        public static void AddLiquorToFile(Liquor newLiquor)
+        {
+            //open file
+            //deconstruct object into comma-separated line
+            //write to file
+            //close file
+        }
     }
 }
