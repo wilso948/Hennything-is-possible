@@ -6,6 +6,7 @@ namespace hennythingIsPossible
 {
     public class Order
     {
+        //no longer used class
         private double _salesTaxRate = 0.06;
 
         public List<Liquor> LiquorOrderList { get; set; }
@@ -25,6 +26,7 @@ namespace hennythingIsPossible
         public string CreditCardExpiration { get; set; }
 
         public string CreditCardCvv { get; set; }
+
 
 
     }
