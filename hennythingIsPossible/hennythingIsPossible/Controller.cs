@@ -170,12 +170,11 @@ namespace hennythingIsPossible
             }
             Console.Write("Pick a liquor: ");
            
-<<<<<<< HEAD
-            return Console.ReadLine(); ;
-=======
+
             return Console.ReadLine(); 
 
->>>>>>> 502b0a839d565b65fcdb22207f8fecf9d7b3043b
+            
+
         }
 
         public void BuyProduct(Controller obj, OrderedItems customerOrder)
