@@ -130,16 +130,18 @@ namespace hennythingIsPossible
             MenuView filteredListView = new MenuView(filteredList);
             filteredListView.DisplayLiquorMenu();
 
-            Console.Write("\nPick an alcohol to choose from the chosen category: ");
-            var pickLiquor = Console.ReadLine();
+            Console.Write($"\nPick an alcohol to choose from the chosen category (1-{filteredList.Count}): ");
+            var pickLiquor = int.Parse(Console.ReadLine());
 
-            foreach (var item in filteredList)
-            {
-                if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
-                {
-                    CurrentLiquorPick = item;
-                }
-            }
+            CurrentLiquorPick = filteredList[pickLiquor - 1];
+
+            //foreach (var item in filteredList)
+            //{
+            //    if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        CurrentLiquorPick = item;
+            //    }
+            //}
             //Console.WriteLine($"{CurrentLiquorPick.Name} has been added.");
         }
 
@@ -168,10 +170,35 @@ namespace hennythingIsPossible
             }
             Console.Write("Pick a liquor: ");
            
-            return Console.ReadLine(); ;
+
+            return Console.ReadLine(); 
+
+            
 
         }
 
+        public void BuyProduct(Controller obj, OrderedItems customerOrder)
+        {
+            //bool userQuit = false;
+            string userInput = null;
+            do
+            {
+                var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
+                obj.PickLiquorFromFilteredList(filteredList);
+                obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+
+                Console.WriteLine("Would you like to add more? Choose (Yes or No):");
+                userInput = Console.ReadLine();
+
+                ////if (userInput == "Yes" || userInput == "yes")
+                //{
+                //    u = true;
+                //}
+
+            } while (userInput != "Yes");
+
+        }
     }
+
 }
 

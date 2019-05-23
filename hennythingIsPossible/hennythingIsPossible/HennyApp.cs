@@ -25,10 +25,12 @@ namespace hennythingIsPossible
                         entireMenuList.DisplayLiquorMenu();
                         break;
                     case MenuEnum.AddProductToOrder:
-                        var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
-                        obj.PickLiquorFromFilteredList(filteredList);
-                        obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
-                        //customerOrder.CalculateOrderTotal();
+
+                        obj.BuyProduct(obj, customerOrder);
+                        customerOrder.CalculateOrderTotal();
+                        Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
+                        Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+
                         break;
                     case MenuEnum.LiquorInfoCenter:
                         InfoCenter inf = new InfoCenter("", "");
@@ -48,6 +50,7 @@ namespace hennythingIsPossible
                         //Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
 
                         //Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+
                         //Display payment options, choose payment, process payment
                         break;
                     case MenuEnum.Quit:
