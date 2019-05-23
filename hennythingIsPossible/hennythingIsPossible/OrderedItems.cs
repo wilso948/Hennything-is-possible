@@ -17,7 +17,8 @@ namespace hennythingIsPossible
         }
         public List<Liquor> LiquorOrderList { get; set; }
 
-        public Enum PaymentType { get; set; }
+        public string PaymentType { get; set; }
+        // public int Quantity { get; set; }
 
         public double SubTotal { get; set; }
 
@@ -33,18 +34,35 @@ namespace hennythingIsPossible
 
         public string CreditCardCvv { get; set; }
 
-        public void CalculateOrderTotal()
-        {
-            //logic to calculate subtotals and set properties:
-            //foreach item in LiquorOrderList, Subtotal = item.Price + Subtotal
-            foreach (var liquor in LiquorOrderList)
+        // public Totals()
+        //{
+        //    List<double> costs = new List<double>();
+        //    SubTotal = 0;
+        //    SalesTaxAmount = 0.06;
+        //    GrandTotal = 0;
+
+            public void CalculateOrderTotal()
             {
-                SubTotal = liquor.Price + SubTotal;
+
+                //logic to calculate subtotals and set properties:
+                //foreach item in LiquorOrderList, Subtotal = item.Price + Subtotal
+                foreach (var liquor in LiquorOrderList)
+                {
+                    SubTotal = liquor.Price + SubTotal;
+                }
+
+                GrandTotal = SubTotal + (SalesTaxAmount * SubTotal);
             }
 
-            GrandTotal = SubTotal + (SalesTaxAmount * SubTotal);
         }
-
     }
-}
+
+
+
+
+
+
+        
+    
+
 

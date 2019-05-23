@@ -38,7 +38,7 @@ namespace hennythingIsPossible
                 }
 
                 int userInput = int.Parse(Console.ReadLine());
-
+                
                 Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
                 Console.ReadLine();
 

@@ -11,6 +11,8 @@ namespace hennythingIsPossible
         public string Category { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
+        public int Counter { get; set; }
+
 
         public Liquor(string name, string category, string description, double price)
         {
@@ -18,6 +20,7 @@ namespace hennythingIsPossible
             this.Category = category;
             this.Description = description;
             this.Price = price;
+            Counter++;
 
         }
     }

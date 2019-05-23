@@ -25,18 +25,32 @@ namespace hennythingIsPossible
                         entireMenuList.DisplayLiquorMenu();
                         break;
                     case MenuEnum.AddProductToOrder:
+
                         obj.BuyProduct(obj, customerOrder);
                         customerOrder.CalculateOrderTotal();
                         Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
                         Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+
                         break;
                     case MenuEnum.LiquorInfoCenter:
                         InfoCenter inf = new InfoCenter("", "");
                         inf.Alcohol();
                         break;
                     case MenuEnum.CashOut:
-                        //Display customerOrder
-                        ShoppingCart.DisplayShoppingCart(customerOrder);
+                        // Display customerOrder
+                        CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
+                        Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
+
+                        Console.WriteLine("Your total is  " + "$" + orderCalculations.grandTotal);
+                        Console.WriteLine();
+                        
+                        PaymentType paymentobj = new PaymentType();
+                        string paymentType = paymentobj.PaymentOption(orderCalculations);
+                        //CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
+                        //Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
+
+                        //Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+
                         //Display payment options, choose payment, process payment
                         break;
                     case MenuEnum.Quit:
