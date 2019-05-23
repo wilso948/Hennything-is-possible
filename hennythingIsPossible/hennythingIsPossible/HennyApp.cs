@@ -28,16 +28,26 @@ namespace hennythingIsPossible
                         var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
                         obj.PickLiquorFromFilteredList(filteredList);
                         obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
-                        customerOrder.CalculateOrderTotal();
-                        Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
-                        Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+                        //customerOrder.CalculateOrderTotal();
                         break;
                     case MenuEnum.LiquorInfoCenter:
                         InfoCenter inf = new InfoCenter("", "");
                         inf.Alcohol();
                         break;
                     case MenuEnum.CashOut:
-                        //Display customerOrder
+                        // Display customerOrder
+                        CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
+                        Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
+
+                        Console.WriteLine("Your total is  " + "$" + orderCalculations.grandTotal);
+                        Console.WriteLine();
+                        
+                        PaymentType paymentobj = new PaymentType();
+                        string paymentType = paymentobj.PaymentOption(orderCalculations);
+                        //CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
+                        //Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
+
+                        //Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
                         //Display payment options, choose payment, process payment
                         break;
                     case MenuEnum.Quit:
