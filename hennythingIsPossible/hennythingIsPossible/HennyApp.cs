@@ -25,9 +25,7 @@ namespace hennythingIsPossible
                         entireMenuList.DisplayLiquorMenu();
                         break;
                     case MenuEnum.AddProductToOrder:
-                        var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
-                        obj.PickLiquorFromFilteredList(filteredList);
-                        obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+                        obj.BuyProduct(obj, customerOrder);
                         customerOrder.CalculateOrderTotal();
                         Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
                         Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
