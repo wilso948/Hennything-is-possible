@@ -168,7 +168,7 @@ namespace hennythingIsPossible
             }
             Console.Write("Pick a liquor: ");
            
-            return Console.ReadLine(); ;
+            return Console.ReadLine(); 
 
         }
 
