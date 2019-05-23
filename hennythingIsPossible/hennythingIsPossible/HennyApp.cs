@@ -36,6 +36,7 @@ namespace hennythingIsPossible
                         break;
                     case MenuEnum.CashOut:
                         //Display customerOrder
+                        ShoppingCart.DisplayShoppingCart(customerOrder);
                         //Display payment options, choose payment, process payment
                         break;
                     case MenuEnum.Quit:
