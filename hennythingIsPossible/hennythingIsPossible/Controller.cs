@@ -130,16 +130,18 @@ namespace hennythingIsPossible
             MenuView filteredListView = new MenuView(filteredList);
             filteredListView.DisplayLiquorMenu();
 
-            Console.Write("\nPick an alcohol to choose from the chosen category: ");
-            var pickLiquor = Console.ReadLine();
+            Console.Write($"\nPick an alcohol to choose from the chosen category (1-{filteredList.Count}): ");
+            var pickLiquor = int.Parse(Console.ReadLine());
 
-            foreach (var item in filteredList)
-            {
-                if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
-                {
-                    CurrentLiquorPick = item;
-                }
-            }
+            CurrentLiquorPick = filteredList[pickLiquor - 1];
+
+            //foreach (var item in filteredList)
+            //{
+            //    if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
+            //    {
+            //        CurrentLiquorPick = item;
+            //    }
+            //}
             //Console.WriteLine($"{CurrentLiquorPick.Name} has been added.");
         }
 
