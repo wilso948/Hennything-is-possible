@@ -170,10 +170,36 @@ namespace hennythingIsPossible
             }
             Console.Write("Pick a liquor: ");
            
+<<<<<<< HEAD
+            return Console.ReadLine(); ;
+=======
             return Console.ReadLine(); 
 
+>>>>>>> 502b0a839d565b65fcdb22207f8fecf9d7b3043b
         }
 
+        public void BuyProduct(Controller obj, OrderedItems customerOrder)
+        {
+            //bool userQuit = false;
+            string userInput = null;
+            do
+            {
+                var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
+                obj.PickLiquorFromFilteredList(filteredList);
+                obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+
+                Console.WriteLine("Would you like to add more? Choose (Yes or No):");
+                userInput = Console.ReadLine();
+
+                ////if (userInput == "Yes" || userInput == "yes")
+                //{
+                //    u = true;
+                //}
+
+            } while (userInput != "Yes");
+
+        }
     }
+
 }
 
