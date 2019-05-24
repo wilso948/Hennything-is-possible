@@ -6,15 +6,21 @@ using System.Text.RegularExpressions;
 namespace hennythingIsPossible
 {
 
-    class PaymentType
+    public class PaymentType
     {
+        public string creditExperition { get; set; }
+        public string cvv { get; set; }
+        public string creditNumber { get; set; }
+        public double input;
+        string userRouting { get; set; }
+        string userAccount { get; set; }
         public PaymentType()
         {
 
         }
-        public string PaymentOption(CalculateOrderTotal calc)
+        public void PaymentOption()
         {
-            string paymentMathod = "";
+            //string paymentMathod = "";
             bool run = true;
             while (run == true)
             {
@@ -40,38 +46,38 @@ namespace hennythingIsPossible
                 }
                 if (input == 1)
                 {
-                    Cash(calc);
-                    paymentMathod = "Cash";
+                    Cash();
+                    //paymentMathod = "Cash";
                 }
                 else if (input == 2)
                 {
-                    CreditCard(calc);
-                    paymentMathod = "Credit Card";
+                    CreditCard();
+                    //paymentMathod = "Credit Card";
 
                 }
                 else if (input == 3)
                 {
 
-                    Check(calc);
-                    paymentMathod = "Check";
+                    Check();
+                    //paymentMathod = "Check";
                 }
             }
-            return paymentMathod;
+            //return paymentMathod;
 
         }
-        public void Check(CalculateOrderTotal calc)
+        public void Check()
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
             Regex account = new Regex("^[0-9]{10,17}$");
 
             Console.WriteLine("Please enter in your routing number.(8-10 digits)");
-            string userRouting = Console.ReadLine();
+            userRouting = Console.ReadLine();
 
             Match validRouting = routing.Match(userRouting);
             if (validRouting.Success)
             {
                 Console.WriteLine("Please enter in your account number. (10-17 digits) ");
-                string userAccount = Console.ReadLine();
+                userAccount = Console.ReadLine();
                 Match validAccount = account.Match(userAccount);
                 if (validAccount.Success)
                 {
@@ -80,20 +86,20 @@ namespace hennythingIsPossible
                 else
                 {
                     Console.WriteLine("Invalid");
-                    PaymentOption(calc);
+                    PaymentOption();
                 }
 
             }
             else
             {
                 Console.WriteLine("Invalid.");
-                PaymentOption(calc);
+                PaymentOption();
             }
 
         }
-        public double Cash(CalculateOrderTotal calcs)
+        public double Cash()
         {
-            double input = 0;
+            var calc = new CalculateOrderTotal();
             bool checkcash = true;
             while (checkcash == true)
             {
@@ -104,7 +110,7 @@ namespace hennythingIsPossible
                     Console.WriteLine("You entered invalid amount!");
                     checkcash = true;
                 }
-                else if (calcs.EnoughFunds(input))
+                else if (calc.EnoughFunds(input))
                 {
                     Console.WriteLine("Enough funds");
                     checkcash = false;
@@ -117,7 +123,7 @@ namespace hennythingIsPossible
             }
             return input;
         }
-        public void CreditCard(CalculateOrderTotal calc)
+        public void CreditCard()
         {
             bool checkout = true;
             while (checkout)
@@ -127,9 +133,9 @@ namespace hennythingIsPossible
                 Regex cardExpiration = new Regex(@"^((0[1-9])|(1[0-2]))\/((2019)|(202[0-9]))$");
                 Regex cardCvv = new Regex(@"^[0-9]{3,4}$");
 
-                string creditExperition;
-                string cvv;
-                string creditNumber = Console.ReadLine();
+                //string creditExperition;
+                //string cvv;
+                creditNumber = Console.ReadLine();
                 Match validateCreditNumber = cardNumber.Match(creditNumber);
 
                 if (validateCreditNumber.Success)
@@ -155,7 +161,7 @@ namespace hennythingIsPossible
                         {
                             Console.WriteLine("invalid CVV number.");
                             Console.WriteLine("Decline");
-                            PaymentOption(calc);
+                            PaymentOption();
                             break;
                         }
                     }
@@ -164,7 +170,7 @@ namespace hennythingIsPossible
                     {
                         Console.WriteLine("invalid expiration date.");
                         Console.WriteLine("Decline");
-                        PaymentOption(calc);
+                        PaymentOption();
                         break;
 
                     }
@@ -176,7 +182,7 @@ namespace hennythingIsPossible
                 {
                     Console.WriteLine("invalid credit card number.");
                     Console.WriteLine("Decline");
-                    PaymentOption(calc);
+                    PaymentOption();
                     break;
                 }
             }

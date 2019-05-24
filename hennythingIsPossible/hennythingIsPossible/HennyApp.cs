@@ -45,7 +45,7 @@ namespace hennythingIsPossible
                         Console.WriteLine();
                         
                         PaymentType paymentobj = new PaymentType();
-                        string paymentType = paymentobj.PaymentOption(orderCalculations);
+                        paymentobj.PaymentOption();
                         //CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
                         //Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
 
