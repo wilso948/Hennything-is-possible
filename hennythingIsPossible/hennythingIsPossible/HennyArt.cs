@@ -8,7 +8,10 @@ namespace hennythingIsPossible
     {
         public static void DisplayHennyArt()
         {
-            Console.Title = "ASCII Art";
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+
+            Console.Title = "Hennything Is Possible Liquor Store";
             string title = @"
  _    _                        _   _     _               _____     
 | |  | |                      | | | |   (_)             |_   _|    
@@ -18,15 +21,18 @@ namespace hennythingIsPossible
 |_|  |_|\___|_| |_|_| |_|\__, |\__|_| |_|_|_| |_|\__, | |_____|___/
                           __/ |                   __/ |            
                          |___/                   |___/             
- _____              _ _     _      
-|  __ \            (_) |   | |     
-| |__) |__  ___ ___ _| |__ | | ___ 
-|  ___/ _ \/ __/ __| | '_ \| |/ _ \
-| |  | (_) \__ \__ \ | |_) | |  __/
-|_|   \___/|___/___/_|_.__/|_|\___|                             
-                                                                 ";
+ _____              _ _     _                                      
+|  __ \            (_) |   | |                                     
+| |__) |__  ___ ___ _| |__ | | ___                                 
+|  ___/ _ \/ __/ __| | '_ \| |/ _ \                                
+| |  | (_) \__ \__ \ | |_) | |  __/                                
+|_|   \___/|___/___/_|_.__/|_|\___|                                
+                                                                   ";
 
             Console.WriteLine(title);
+            Console.WriteLine();
+            Console.ResetColor();
+
         }
     }
 }
