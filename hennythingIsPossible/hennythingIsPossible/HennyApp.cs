@@ -28,8 +28,9 @@ namespace hennythingIsPossible
 
                         obj.BuyProduct(obj, customerOrder);
                         customerOrder.CalculateOrderTotal();
-                        Console.WriteLine($"\nSubTotal: {customerOrder.SubTotal}");
-                        Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
+                        Console.WriteLine(string.Format("{0} {1:C2} ","Subtotal: ",customerOrder.SubTotal));
+                        Console.WriteLine(string.Format("{0} {1:C2} ","Grand Total: ",customerOrder.GrandTotal));
+                        
 
                         break;
                     case MenuEnum.LiquorInfoCenter:

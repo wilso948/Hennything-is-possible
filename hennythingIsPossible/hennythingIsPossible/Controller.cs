@@ -156,8 +156,7 @@ namespace hennythingIsPossible
             //This portion is to verify that the object actually added to the list.
             foreach (var item in order.LiquorOrderList)
             {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.Price);
+                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price))); 
             }
         }
 
@@ -179,7 +178,6 @@ namespace hennythingIsPossible
 
         public void BuyProduct(Controller obj, OrderedItems customerOrder)
         {
-            //bool userQuit = false;
             string userInput = null;
             do
             {
@@ -190,12 +188,9 @@ namespace hennythingIsPossible
                 Console.WriteLine("Would you like to add more? Choose (Yes or No):");
                 userInput = Console.ReadLine();
 
-                ////if (userInput == "Yes" || userInput == "yes")
-                //{
-                //    u = true;
-                //}
+                
 
-            } while (userInput != "Yes");
+            } while (userInput.Equals("yes", StringComparison.OrdinalIgnoreCase));
 
         }
     }
