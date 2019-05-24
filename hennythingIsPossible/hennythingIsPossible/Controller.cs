@@ -135,14 +135,6 @@ namespace hennythingIsPossible
 
             CurrentLiquorPick = filteredList[pickLiquor - 1];
 
-            //foreach (var item in filteredList)
-            //{
-            //    if (pickLiquor.Equals(item.Name, StringComparison.OrdinalIgnoreCase))
-            //    {
-            //        CurrentLiquorPick = item;
-            //    }
-            //}
-            //Console.WriteLine($"{CurrentLiquorPick.Name} has been added.");
         }
 
         public void AddAlcoholToOrder(OrderedItems order, Liquor alcoholPick)
@@ -153,7 +145,7 @@ namespace hennythingIsPossible
             {
                 order.LiquorOrderList.Add(alcoholPick);
             }
-            //This portion is to verify that the object actually added to the list.
+
             foreach (var item in order.LiquorOrderList)
             {
                 Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price))); 
