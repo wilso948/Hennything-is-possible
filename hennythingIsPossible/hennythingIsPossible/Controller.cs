@@ -4,7 +4,7 @@ using System.Text;
 
 namespace hennythingIsPossible
 {
-    public class Controller : Order
+    public class Controller : OrderedItems
     {
 
         public List<Liquor> Menu { get; set; }
