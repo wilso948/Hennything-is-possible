@@ -25,13 +25,10 @@ namespace hennythingIsPossible
                         entireMenuList.DisplayLiquorMenu();
                         break;
                     case MenuEnum.AddProductToOrder:
-
                         obj.BuyProduct(obj, customerOrder);
                         customerOrder.CalculateOrderTotal();
                         Console.WriteLine(string.Format("{0} {1:C2} ","Subtotal: ",customerOrder.SubTotal));
-                        Console.WriteLine(string.Format("{0} {1:C2} ","Grand Total: ",customerOrder.GrandTotal));
-                        
-
+                        Console.WriteLine(string.Format("{0} {1:C2} ","Grand Total: ",customerOrder.GrandTotal));                    
                         break;
                     case MenuEnum.LiquorInfoCenter:
                         InfoCenter inf = new InfoCenter("", "");
@@ -40,19 +37,12 @@ namespace hennythingIsPossible
                     case MenuEnum.CashOut:
                         // Display customerOrder
                         CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
-                        Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
-
-                        Console.WriteLine("Your total is  " + "$" + orderCalculations.grandTotal);
+                        Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.subtotal));
+                        Console.WriteLine(string.Format("{0} {1:C2} ", "Grand Total: ", orderCalculations.grandTotal));
                         Console.WriteLine();
                         
                         PaymentType paymentobj = new PaymentType();
                         paymentobj.PaymentOption();
-                        //CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
-                        //Console.WriteLine($"\nSubTotal: {orderCalculations.subtotal}");
-
-                        //Console.WriteLine($"\nGrandTotal: {customerOrder.GrandTotal}");
-
-                        //Display payment options, choose payment, process payment
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("Bye!");
