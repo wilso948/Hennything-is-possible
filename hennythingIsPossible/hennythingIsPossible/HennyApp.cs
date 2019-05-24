@@ -40,9 +40,9 @@ namespace hennythingIsPossible
                         Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.subtotal));
                         Console.WriteLine(string.Format("{0} {1:C2} ", "Grand Total: ", orderCalculations.grandTotal));
                         Console.WriteLine();
-                        
-                        PaymentType paymentobj = new PaymentType();
-                        paymentobj.PaymentOption();
+                        //Inserted Reciept object to account for changes to Reciept class.
+                        Receipt recieptobj = new Receipt();
+                        recieptobj.PaymentOption();
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("Bye!");
