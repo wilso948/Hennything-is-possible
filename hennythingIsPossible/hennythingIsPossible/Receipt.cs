@@ -85,8 +85,8 @@ namespace hennythingIsPossible
 
             foreach (var item in LiquorListForReceipt)
             {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.Price);
+                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+
             }
         }
 
@@ -99,8 +99,8 @@ namespace hennythingIsPossible
 
             foreach (var item in LiquorListForReceipt)
             {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.Price);
+                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+
             }
         }
 
@@ -112,8 +112,8 @@ namespace hennythingIsPossible
 
             foreach (var item in LiquorListForReceipt)
             {
-                Console.WriteLine(item.Name);
-                Console.WriteLine(item.Price);
+                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+
             }
         }
         public void Check()
