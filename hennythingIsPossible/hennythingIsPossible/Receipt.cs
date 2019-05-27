@@ -13,24 +13,32 @@ namespace hennythingIsPossible
         //added List<liquor> property for the Receipt object
         public List<Liquor> LiquorListForReceipt { get; set; }
 
-        public Receipt()
-        {
-            //this.calculation = calculation;
-            var LiquorOrderedList = new List<Liquor>();
-            var calculations = new CalculateOrderTotal();
-            LiquorListForReceipt = calculations.liquorOrderList;
-        }
+        public int MyProperty { get; set; }
+
+        //public Receipt()
+        //{
+        //    //this.calculation = calculation;
+        //    var LiquorOrderedList = new List<Liquor>();
+        //    var calculations = new CalculateOrderTotal();
+        //    LiquorListForReceipt = calculations.liquorOrderList;
+        //}
 
         //added a new constructor to take in an OrderedItem object -mattyo
-        public Receipt(OrderedItems orderedItems)
-        {
-            LiquorListForReceipt = orderedItems.LiquorOrderList;
+        //public Receipt(OrderedItems orderedItems)
+        //{
+        //    LiquorListForReceipt = orderedItems.LiquorOrderList;
            
+        //}
+
+        public Receipt(CalculateOrderTotal calculatedOrder)
+        {
+            LiquorListForReceipt = calculatedOrder.liquorOrderList;
+
         }
         //Moved methods from PaymentType class to Receipt class.
         //Nested Cash, Check, and CreditCard functions inside the respective reciept functions.
         //Nested Reciept functions inside the main Payment method.
-        public void PaymentOption()
+        public void SelectPaymentOption()
         {
             //string paymentMathod = "";
             bool run = true;
@@ -80,7 +88,7 @@ namespace hennythingIsPossible
 
         public void CashReciept()
         {
-            Cash();
+            ProcessCashPayment();
             //Console.WriteLine();
 
             foreach (var item in LiquorListForReceipt)
@@ -92,10 +100,10 @@ namespace hennythingIsPossible
 
         public void CreditCardReciept()
         {
-            CreditCard();
-            Console.WriteLine(cvv);
-            Console.WriteLine(creditExperition);
-            Console.WriteLine(creditNumber);
+            ProcessCreditCardPayment();
+            Console.WriteLine(CreditCardCvv);
+            Console.WriteLine(CreditCardExpiration);
+            Console.WriteLine(CreditCardNumber);
 
             foreach (var item in LiquorListForReceipt)
             {
@@ -106,9 +114,9 @@ namespace hennythingIsPossible
 
         public void CheckReciept()
         {
-            Check();
-            Console.WriteLine(userRouting);
-            Console.WriteLine(userAccount);
+            ProcessCheckPayment();
+            Console.WriteLine(CheckRoutingNumber);
+            Console.WriteLine(CheckAccountNumber);
 
             foreach (var item in LiquorListForReceipt)
             {
@@ -116,20 +124,20 @@ namespace hennythingIsPossible
 
             }
         }
-        public void Check()
+        public void ProcessCheckPayment()
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
             Regex account = new Regex("^[0-9]{10,17}$");
 
             Console.WriteLine("Please enter in your routing number.(8-10 digits)");
-            userRouting = Console.ReadLine();
+            CheckRoutingNumber = Console.ReadLine();
 
-            Match validRouting = routing.Match(userRouting);
+            Match validRouting = routing.Match(CheckRoutingNumber);
             if (validRouting.Success)
             {
                 Console.WriteLine("Please enter in your account number. (10-17 digits) ");
-                userAccount = Console.ReadLine();
-                Match validAccount = account.Match(userAccount);
+                CheckAccountNumber = Console.ReadLine();
+                Match validAccount = account.Match(CheckAccountNumber);
                 if (validAccount.Success)
                 {
                     Console.WriteLine("valid");
@@ -137,31 +145,31 @@ namespace hennythingIsPossible
                 else
                 {
                     Console.WriteLine("Invalid");
-                    PaymentOption();
+                    SelectPaymentOption();
                 }
 
             }
             else
             {
                 Console.WriteLine("Invalid.");
-                PaymentOption();
+                SelectPaymentOption();
             }
 
         }
-        public double Cash()
+        public double ProcessCashPayment()
         {
             var calc = new CalculateOrderTotal();
             bool checkcash = true;
             while (checkcash == true)
             {
                 Console.WriteLine("Please enter the payment amount : ");
-                bool checkinput = double.TryParse(Console.ReadLine(), out input);
-                if (checkinput == false)
+                bool isUserEnteredCashADouble = double.TryParse(Console.ReadLine(), out userEnteredCash);
+                if (isUserEnteredCashADouble == false)
                 {
                     Console.WriteLine("You entered invalid amount!");
                     checkcash = true;
                 }
-                else if (calc.EnoughFunds(input))
+                else if (calc.EnoughCashFunds(userEnteredCash))
                 {
                     Console.WriteLine("Enough funds");
                     checkcash = false;
@@ -172,9 +180,9 @@ namespace hennythingIsPossible
                     checkcash = true;
                 }
             }
-            return input;
+            return userEnteredCash;
         }
-        public void CreditCard()
+        public void ProcessCreditCardPayment()
         {
             bool checkout = true;
             while (checkout)
@@ -186,23 +194,23 @@ namespace hennythingIsPossible
 
                 //string creditExperition;
                 //string cvv;
-                creditNumber = Console.ReadLine();
-                Match validateCreditNumber = cardNumber.Match(creditNumber);
+                CreditCardNumber = Console.ReadLine();
+                Match validateCreditNumber = cardNumber.Match(CreditCardNumber);
 
                 if (validateCreditNumber.Success)
                 {
                     Console.WriteLine("The card number entered is vaild");
                     Console.WriteLine();
                     Console.WriteLine("Please enter the credit card expiration in the form of(MM/YYYY)");
-                    creditExperition = Console.ReadLine();
-                    Match expiration = cardExpiration.Match(creditExperition);
+                    CreditCardExpiration = Console.ReadLine();
+                    Match expiration = cardExpiration.Match(CreditCardExpiration);
                     if (expiration.Success)
                     {
                         Console.WriteLine("valid");
                         Console.WriteLine();
                         Console.WriteLine("Please enter the credit card CVV");
-                        cvv = Console.ReadLine();
-                        Match validateCvv = cardCvv.Match(cvv);
+                        CreditCardCvv = Console.ReadLine();
+                        Match validateCvv = cardCvv.Match(CreditCardCvv);
                         if (validateCvv.Success)
                         {
                             Console.WriteLine("valid");
@@ -212,7 +220,7 @@ namespace hennythingIsPossible
                         {
                             Console.WriteLine("invalid CVV number.");
                             Console.WriteLine("Decline");
-                            PaymentOption();
+                            SelectPaymentOption();
                             break;
                         }
                     }
@@ -221,7 +229,7 @@ namespace hennythingIsPossible
                     {
                         Console.WriteLine("invalid expiration date.");
                         Console.WriteLine("Decline");
-                        PaymentOption();
+                        SelectPaymentOption();
                         break;
 
                     }
@@ -233,7 +241,7 @@ namespace hennythingIsPossible
                 {
                     Console.WriteLine("invalid credit card number.");
                     Console.WriteLine("Decline");
-                    PaymentOption();
+                    SelectPaymentOption();
                     break;
                 }
             }

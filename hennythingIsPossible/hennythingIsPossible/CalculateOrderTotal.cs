@@ -51,7 +51,7 @@ namespace hennythingIsPossible
         }
 
 
-        public bool EnoughFunds(double cashAmount)
+        public bool EnoughCashFunds(double cashAmount)
         {
             if (cashAmount < grandTotal)
             {

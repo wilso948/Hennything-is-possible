@@ -41,8 +41,8 @@ namespace hennythingIsPossible
                         Console.WriteLine(string.Format("{0} {1:C2} ", "Grand Total: ", orderCalculations.grandTotal));
                         Console.WriteLine();
                         //Inserted Reciept object to account for changes to Reciept class.
-                        Receipt receiptObj = new Receipt(customerOrder);
-                        receiptObj.PaymentOption();
+                        Receipt receiptObj = new Receipt(orderCalculations);
+                        receiptObj.SelectPaymentOption();
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("Bye!");

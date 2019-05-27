@@ -8,12 +8,18 @@ namespace hennythingIsPossible
 
     public class PaymentType
     {
-        public string creditExperition { get; set; }
-        public string cvv { get; set; }
-        public string creditNumber { get; set; }
-        public double input;
-        public string userRouting { get; set; }
-        public string userAccount { get; set; }
+        public string CreditCardExpiration { get; set; }
+
+        public string CreditCardCvv { get; set; }
+
+        public string CreditCardNumber { get; set; }
+
+        public double userEnteredCash;
+
+        public string CheckRoutingNumber { get; set; }
+
+        public string CheckAccountNumber { get; set; }
+
         public PaymentType()
         {
 
