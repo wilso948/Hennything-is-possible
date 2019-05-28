@@ -6,7 +6,7 @@ namespace hennythingIsPossible
 {
     public class Liquor
     {
-
+        public int LiquorId { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
@@ -14,8 +14,9 @@ namespace hennythingIsPossible
         public int Counter { get; set; }
 
 
-        public Liquor(string name, string category, string description, double price)
+        public Liquor(int liquorId, string name, string category, string description, double price)
         {
+            this.LiquorId = liquorId;
             this.Name = name;
             this.Category = category;
             this.Description = description;

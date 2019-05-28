@@ -39,7 +39,7 @@ namespace hennythingIsPossible
             foreach (var item in result)
             {
                 var liquorDetail = item.Split(",");
-                var liqour = new Liquor(liquorDetail[0], liquorDetail[1], liquorDetail[2], double.Parse(liquorDetail[3]));
+                var liqour = new Liquor(int.Parse(liquorDetail[0]), liquorDetail[1], liquorDetail[2], liquorDetail[3], double.Parse(liquorDetail[4]));
                 inventoryList.Add(liqour);
             }
             return inventoryList;

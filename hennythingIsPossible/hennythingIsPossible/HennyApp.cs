@@ -14,7 +14,7 @@ namespace hennythingIsPossible
             customerOrder.SalesTaxAmount = 0.06;
             bool userWantsToQuit = false;
          
-            //HennyArt.DisplayHennyArt();
+            HennyArt.DisplayHennyArt();
 
             do
             {
