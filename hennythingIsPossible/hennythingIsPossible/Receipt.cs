@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -13,7 +14,7 @@ namespace hennythingIsPossible
         //added List<liquor> property for the Receipt object
         public List<Liquor> LiquorListForReceipt { get; set; }
 
-        public int MyProperty { get; set; }
+        public List<ReceiptLineItem> ReceiptLineItemsList { get; set; }
 
         //public Receipt()
         //{
@@ -31,9 +32,11 @@ namespace hennythingIsPossible
         //}
 
         public Receipt(CalculateOrderTotal calculatedOrder)
-        {
+        {     
             LiquorListForReceipt = calculatedOrder.liquorOrderList;
-
+            ReceiptLineItemsList = new List<ReceiptLineItem>();
+            UpdateReceiptLineItems();
+          
         }
         //Moved methods from PaymentType class to Receipt class.
         //Nested Cash, Check, and CreditCard functions inside the respective reciept functions.
@@ -124,6 +127,7 @@ namespace hennythingIsPossible
 
             }
         }
+
         public void ProcessCheckPayment()
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
@@ -156,6 +160,7 @@ namespace hennythingIsPossible
             }
 
         }
+
         public double ProcessCashPayment()
         {
             var calc = new CalculateOrderTotal();
@@ -169,7 +174,7 @@ namespace hennythingIsPossible
                     Console.WriteLine("You entered invalid amount!");
                     checkcash = true;
                 }
-                else if (calc.EnoughCashFunds(userEnteredCash))
+                else if (calc.DoesUserHaveEnoughCashFunds(userEnteredCash))
                 {
                     Console.WriteLine("Enough funds");
                     checkcash = false;
@@ -182,6 +187,7 @@ namespace hennythingIsPossible
             }
             return userEnteredCash;
         }
+
         public void ProcessCreditCardPayment()
         {
             bool checkout = true;
@@ -245,6 +251,34 @@ namespace hennythingIsPossible
                     break;
                 }
             }
+
+        }
+
+        public void UpdateReceiptLineItems()
+        {
+
+            ReceiptLineItemsList = LiquorListForReceipt
+                .GroupBy(i => i.LiquorId)
+                .Select(rl => new ReceiptLineItem
+                {
+                    LiquorId = rl.First().LiquorId,
+                    LiquorName = rl.First().Name,
+                    UnitPrice = rl.First().Price,
+                    Quantity = rl.Count()
+                    
+                })
+                .ToList();
+
+            foreach (var item in ReceiptLineItemsList)
+            {
+                item.LineItemSubtotal = item.Quantity * item.UnitPrice;
+            }
+
+            foreach (var receiptLineItem in ReceiptLineItemsList)
+            {
+                Console.WriteLine($"id: {receiptLineItem.LiquorId}, n: {receiptLineItem.LiquorName}, q: {receiptLineItem.Quantity}, p: {receiptLineItem.UnitPrice}, t: {receiptLineItem.LineItemSubtotal}");
+            }
+            Console.WriteLine();
 
         }
     }
