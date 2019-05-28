@@ -9,12 +9,18 @@ namespace hennythingIsPossible
         string Name { get; set; }
         string Definition { get; set; }
 
+        List<InfoCenter> Types = new List<InfoCenter>();
+
+        public InfoCenter()
+        {
+
+        }
+
         public InfoCenter(string name, string definition)
         {
             this.Name = name;
             this.Definition = definition;
         }
-        List<InfoCenter> Types = new List<InfoCenter>();
 
         public void Alcohol()
         {

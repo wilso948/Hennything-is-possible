@@ -28,38 +28,39 @@ namespace hennythingIsPossible
             }
         }
 
-        public static void DisplayReceipt(Receipt receipt)
+        public static void DisplayShoppingCart()
         {
-            //var list = new List<ShoppingCartLineItem>();
 
-            foreach (var item in receipt.LiquorListForReceipt)
-            {
+        }
 
-            }
+        public static void DisplayCheckOutCart(Receipt receipt, CalculateOrderTotal orderCalculations)
+        {
+
+            Console.WriteLine();
+            Console.WriteLine("------------------------------- SHOPPING CART -------------------------------");
+            Console.WriteLine();
+
+            Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10} {5, 10}", "", "ID" ,"Name", "Quantity", "Unit Price", "Item Subtotal"));
 
             int i = 0;
-            Console.WriteLine();
-            Console.WriteLine("---------------------------");
-            Console.WriteLine("SHOPPING CART");
-            Console.WriteLine("---------------------------");
 
-
-            Console.WriteLine(string.Format("{0,-4}{1,-30} {2,-10} {3, -8}", "", "Name", "Category", "Description", "Price"));
-
-            foreach (Liquor item in receipt.LiquorListForReceipt)
+            foreach (var item in receipt.ReceiptLineItemsList)
             {
-
-                Console.WriteLine(string.Format("{0,-4}{1,-30} {2,-10} {3, -8}", i + 1 + ".)", item.Name, item.Category, item.Price));
+                Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10:C2} {5, 10:C2}", i + 1 + ".)", item.LiquorId, item.LiquorName, item.Quantity, item.UnitPrice, item.LineItemSubtotal));
                 i++;
             }
 
             Console.WriteLine();
             Console.WriteLine("---------------------------");
-            Console.WriteLine();
-            Console.WriteLine($"Total quantity: {receipt.LiquorListForReceipt.Count}");
-            //Console.WriteLine(string.Format("Subotal: {0:C2}", receipt.SubTotal));
-            //Console.WriteLine(string.Format("Sales Tax: {0:P1}", receipt.SalesTaxAmount));
-            //Console.WriteLine(string.Format("Total: {0:C2}", receipt.GrandTotal));
+            Console.WriteLine($"Total units in cart: {receipt.LiquorListForReceipt.Count}");
+            Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.subtotal));
+            Console.WriteLine("---------------------------");
+
+        }
+
+        public static void DisplayCartSummary(OrderedItems order, CalculateOrderTotal calculatedOrder)
+        {
+            Console.WriteLine(string.Format("{0} {1} {2, 30} {3:C2}","Items in cart: ", order.LiquorOrderList.Count, "Subtotal: ", order.SubTotal));
         }
     }
 }

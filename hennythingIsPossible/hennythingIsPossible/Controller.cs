@@ -12,8 +12,8 @@ namespace hennythingIsPossible
         public Liquor CurrentLiquorPick { get; set; }
 
         
-        MenuView obj;
-        ConsoleColor color;
+        //MenuView obj;
+        //ConsoleColor color;
 
         public Controller()
         {
@@ -139,17 +139,17 @@ namespace hennythingIsPossible
 
         public void AddAlcoholToOrder(OrderedItems order, Liquor alcoholPick)
         {
-            Console.WriteLine($"How many of {alcoholPick.Name} would you like? Please input a number.");
+            Console.Write($"How many of {alcoholPick.Name} would you like? Please input a number: ");
             var quantitypick = int.Parse(Console.ReadLine());
             for (int i = 0; i < quantitypick; i++)
             {
                 order.LiquorOrderList.Add(alcoholPick);
             }
 
-            foreach (var item in order.LiquorOrderList)
-            {
-                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price))); 
-            }
+            //foreach (var item in order.LiquorOrderList)
+            //{
+            //    Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price))); 
+            //}
         }
 
         public string PromptUserForLiquorType()
@@ -163,9 +163,7 @@ namespace hennythingIsPossible
            
 
             return Console.ReadLine(); 
-
-            
-
+           
         }
 
         public void BuyProduct(Controller obj, OrderedItems customerOrder)
@@ -177,11 +175,9 @@ namespace hennythingIsPossible
                 obj.PickLiquorFromFilteredList(filteredList);
                 obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
 
-                Console.WriteLine("Would you like to add more? Choose (Yes or No):");
+                Console.Write("Would you like to add more? Choose (Yes or No): ");
                 userInput = Console.ReadLine();
-
-                
-
+               
             } while (userInput.Equals("yes", StringComparison.OrdinalIgnoreCase));
 
         }
