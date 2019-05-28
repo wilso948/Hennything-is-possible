@@ -9,16 +9,17 @@ namespace hennythingIsPossible
 
         public static void Run()
         {
+            InfoCenter infoCenter = new InfoCenter();
             Controller obj = new Controller();
             OrderedItems customerOrder = new OrderedItems();
+            CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
             customerOrder.SalesTaxAmount = 0.06;
             bool userWantsToQuit = false;
          
-            HennyArt.DisplayHennyArt();
 
             do
             {
-                switch (Menu.DisplayMainMenu())
+                switch (Menu.DisplayMainMenu(customerOrder, orderCalculations))
                 {
                     case MenuEnum.DisplayInventory:
                         var entireMenuList = new MenuView(obj.Menu);
@@ -26,22 +27,15 @@ namespace hennythingIsPossible
                         break;
                     case MenuEnum.AddProductToOrder:
                         obj.BuyProduct(obj, customerOrder);
-                        customerOrder.CalculateOrderTotal();
-                        Console.WriteLine(string.Format("{0} {1:C2} ","Subtotal: ",customerOrder.SubTotal));
-                        Console.WriteLine(string.Format("{0} {1:C2} ","Grand Total: ",customerOrder.GrandTotal));                    
+                        customerOrder.RecalculateOrderTotals();                 
                         break;
                     case MenuEnum.LiquorInfoCenter:
-                        InfoCenter inf = new InfoCenter("", "");
-                        inf.Alcohol();
+                        infoCenter.Alcohol();
                         break;
                     case MenuEnum.CashOut:
-                        // Display customerOrder
-                        CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
-                        Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.subtotal));
-                        Console.WriteLine(string.Format("{0} {1:C2} ", "Grand Total: ", orderCalculations.grandTotal));
-                        Console.WriteLine();
-                        //Inserted Reciept object to account for changes to Reciept class.
+                        customerOrder.RecalculateOrderTotals();
                         Receipt receiptObj = new Receipt(orderCalculations);
+                        MenuView.DisplayCheckOutCart(receiptObj, orderCalculations);
                         receiptObj.SelectPaymentOption();
                         break;
                     case MenuEnum.Quit:

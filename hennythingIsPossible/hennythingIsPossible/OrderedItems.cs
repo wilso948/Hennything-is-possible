@@ -6,15 +6,10 @@ namespace hennythingIsPossible
 {
     public class OrderedItems
     {
-        public OrderedItems()
-        {
-            LiquorOrderList = new List<Liquor>();
-        }
-
-        public OrderedItems(List<Liquor> liquorList)
-        {
-            LiquorOrderList = liquorList;
-        }
+        //public OrderedItems(List<Liquor> liquorList)
+        //{
+        //    LiquorOrderList = liquorList;
+        //}
         public List<Liquor> LiquorOrderList { get; set; }
 
         public string PaymentType { get; set; }
@@ -34,6 +29,11 @@ namespace hennythingIsPossible
 
         public string CreditCardCvv { get; set; }
 
+        public OrderedItems()
+        {
+            LiquorOrderList = new List<Liquor>();
+        }
+
         // public Totals()
         //{
         //    List<double> costs = new List<double>();
@@ -41,9 +41,10 @@ namespace hennythingIsPossible
         //    SalesTaxAmount = 0.06;
         //    GrandTotal = 0;
 
-            public void CalculateOrderTotal()
+        public void RecalculateOrderTotals()
             {
-
+            SubTotal = 0;
+            GrandTotal = 0;
                 //logic to calculate subtotals and set properties:
                 //foreach item in LiquorOrderList, Subtotal = item.Price + Subtotal
                 foreach (var liquor in LiquorOrderList)

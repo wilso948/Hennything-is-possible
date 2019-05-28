@@ -8,6 +8,8 @@ namespace hennythingIsPossible
 
     public class PaymentType
     {
+        public string PaymentMethod { get; set; }
+
         public string CreditCardExpiration { get; set; }
 
         public string CreditCardCvv { get; set; }

@@ -16,6 +16,8 @@ namespace hennythingIsPossible
 
         public List<ReceiptLineItem> ReceiptLineItemsList { get; set; }
 
+        
+
         //public Receipt()
         //{
         //    //this.calculation = calculation;
@@ -36,6 +38,7 @@ namespace hennythingIsPossible
             LiquorListForReceipt = calculatedOrder.liquorOrderList;
             ReceiptLineItemsList = new List<ReceiptLineItem>();
             UpdateReceiptLineItems();
+
           
         }
         //Moved methods from PaymentType class to Receipt class.
@@ -274,11 +277,11 @@ namespace hennythingIsPossible
                 item.LineItemSubtotal = item.Quantity * item.UnitPrice;
             }
 
-            foreach (var receiptLineItem in ReceiptLineItemsList)
-            {
-                Console.WriteLine($"id: {receiptLineItem.LiquorId}, n: {receiptLineItem.LiquorName}, q: {receiptLineItem.Quantity}, p: {receiptLineItem.UnitPrice}, t: {receiptLineItem.LineItemSubtotal}");
-            }
-            Console.WriteLine();
+            //foreach (var receiptLineItem in ReceiptLineItemsList)
+            //{
+            //    Console.WriteLine($"id: {receiptLineItem.LiquorId}, n: {receiptLineItem.LiquorName}, q: {receiptLineItem.Quantity}, p: {receiptLineItem.UnitPrice}, t: {receiptLineItem.LineItemSubtotal}");
+            //}
+            //Console.WriteLine();
 
         }
     }

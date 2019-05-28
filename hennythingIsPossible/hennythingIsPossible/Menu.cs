@@ -6,14 +6,21 @@ namespace hennythingIsPossible
 {
     public class Menu
     {
-        public static Enum DisplayMainMenu()
+        public static Enum DisplayMainMenu(OrderedItems order, CalculateOrderTotal calculatedOrder)
         {
+            Console.Clear();
+
+            HennyArt.DisplayHennyArt();
+            MenuView.DisplayCartSummary(order, calculatedOrder);
+
+            Console.WriteLine();
             Console.WriteLine("-- Main Menu --");
             Console.WriteLine("1). Display Inventory");
             Console.WriteLine("2). Add Product to Order");
             Console.WriteLine("3). Liquor Info Center");
             Console.WriteLine("4). Cash Out");
             Console.WriteLine("5). Quit");
+            Console.WriteLine();
 
             Console.Write("Select an option: ");
 
