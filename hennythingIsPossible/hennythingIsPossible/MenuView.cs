@@ -61,6 +61,7 @@ namespace hennythingIsPossible
         public static void DisplayCartSummary(OrderedItems order, CalculateOrderTotal calculatedOrder)
         {
             Console.WriteLine(string.Format("{0, 70} {1} {2, 15} {3:C2}","Items in cart: ", order.LiquorOrderList.Count, "Subtotal: ", order.SubTotal));
+
         }
     }
 }
