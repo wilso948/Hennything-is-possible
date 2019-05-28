@@ -21,14 +21,6 @@ namespace hennythingIsPossible
 
         public double GrandTotal { get; set; }
 
-        public string CheckNumber { get; set; }
-
-        public string CreditCardNumber { get; set; }
-
-        public string CreditCardExpiration { get; set; }
-
-        public string CreditCardCvv { get; set; }
-
         public OrderedItems()
         {
             LiquorOrderList = new List<Liquor>();
