@@ -36,7 +36,7 @@ namespace hennythingIsPossible
                         customerOrder.RecalculateOrderTotals();
                         Receipt receiptObj = new Receipt(orderCalculations);
                         MenuView.DisplayCheckOutCart(receiptObj, orderCalculations);
-                        receiptObj.SelectPaymentOption();
+                        receiptObj.SelectPaymentMethod();
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("\nBye!");
