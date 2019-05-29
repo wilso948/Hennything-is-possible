@@ -10,7 +10,7 @@ namespace hennythingIsPossible
         {
             Console.Clear();
 
-            HennyArt.DisplayHennyArt();
+            //HennyArt.DisplayHennyArt();
             MenuView.DisplayCartSummary(order, calculatedOrder);
 
             Console.WriteLine();
