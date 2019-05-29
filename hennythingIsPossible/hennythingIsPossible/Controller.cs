@@ -22,6 +22,43 @@ namespace hennythingIsPossible
 
         }
 
+        public void BuyProduct(Controller obj, OrderedItems customerOrder)
+        {
+            string userInput = null;
+            do
+            {
+                var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
+                if (filteredList.Count > 0)
+                {
+                    obj.PickLiquorFromFilteredList(filteredList);
+                    obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
+                }
+                else
+                {
+                    Console.WriteLine("\nSorry, none in stock.\n");
+                }
+
+                Console.Write("Would you like to add more? Choose (Yes or No): ");
+                userInput = Console.ReadLine();
+
+            } while (userInput.Equals("yes", StringComparison.OrdinalIgnoreCase));
+
+        }
+
+        public string PromptUserForLiquorType()
+        {
+            var liquorTypes = Enum.GetValues(typeof(LiquorType));
+            foreach (var liquor in liquorTypes)
+            {
+                Console.WriteLine($"{liquor.ToString()}");
+            }
+            Console.Write("Pick a liquor: ");
+
+            return Console.ReadLine();
+
+            //add validation so user can enter number instead of type name
+
+        }
 
         public List<Liquor> FilterListByCategory(List<Liquor> menu, string category)
         {
@@ -62,35 +99,6 @@ namespace hennythingIsPossible
 
         }
 
-        public string PromptUserForLiquorType()
-        {
-            var liquorTypes = Enum.GetValues(typeof(LiquorType));
-            foreach (var liquor in liquorTypes)
-            {
-                Console.WriteLine($"{liquor.ToString()}");
-            }
-            Console.Write("Pick a liquor: ");
-           
-
-            return Console.ReadLine(); 
-           
-        }
-
-        public void BuyProduct(Controller obj, OrderedItems customerOrder)
-        {
-            string userInput = null;
-            do
-            {
-                var filteredList = obj.FilterListByCategory(obj.Menu, obj.PromptUserForLiquorType());
-                obj.PickLiquorFromFilteredList(filteredList);
-                obj.AddAlcoholToOrder(customerOrder, obj.CurrentLiquorPick);
-
-                Console.Write("Would you like to add more? Choose (Yes or No): ");
-                userInput = Console.ReadLine();
-               
-            } while (userInput.Equals("yes", StringComparison.OrdinalIgnoreCase));
-
-        }
     }
 
 }

@@ -39,11 +39,11 @@ namespace hennythingIsPossible
                         receiptObj.SelectPaymentOption();
                         break;
                     case MenuEnum.Quit:
-                        Console.WriteLine("Bye!");
+                        Console.WriteLine("\nBye!");
                         userWantsToQuit = true;
                         break;
                     default:
-                        Console.WriteLine("Try again");
+                        Console.WriteLine("\nTry again");
                         break;
                 }
 
