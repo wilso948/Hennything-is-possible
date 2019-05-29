@@ -9,11 +9,11 @@ namespace hennythingIsPossible
     {
 
         //PaymentType obj = new PaymentType(); 
-        public double subtotal;
-        public double salesTax;
-        public double grandTotal;
-        public double cashAmount;
-        public double changeCash;
+        public double Subtotal;
+        public double SalesTax;
+        public double GrandTotal;
+        public double CashAmount;
+        public double ChangeCash;
         public List<Liquor> liquorOrderList = new List<Liquor>();
 
         public CalculateOrderTotal(OrderedItems order)
@@ -35,32 +35,32 @@ namespace hennythingIsPossible
         public void Totals() 
         {
             List<double> costs = new List<double>();
-            subtotal = 0;
-            salesTax = 0.06;
-            grandTotal = 0;
+            Subtotal = 0;
+            SalesTax = 0.06;
+            GrandTotal = 0;
 
             foreach (var liquor in liquorOrderList)
             {
-                subtotal = liquor.Price + subtotal;    
+                Subtotal = liquor.Price + Subtotal;    
             }
-            costs.Add(subtotal);
+            costs.Add(Subtotal);
             double sum = costs.Sum();
-            double amountOfSalesTax = Math.Round(sum * salesTax, 2);
-            grandTotal =sum + amountOfSalesTax;
+            double amountOfSalesTax = Math.Round(sum * SalesTax, 2);
+            GrandTotal =sum + amountOfSalesTax;
 
         }
 
 
         public bool DoesUserHaveEnoughCashFunds(double cashAmount)
         {
-            if (cashAmount < grandTotal)
+            if (cashAmount < GrandTotal)
             {
                 return false;
             }
             else
             {
-                changeCash = cashAmount - grandTotal;
-                this.cashAmount = cashAmount;
+                ChangeCash = cashAmount - GrandTotal;
+                this.CashAmount = cashAmount;
                 return true;
             }
         }

@@ -8,45 +8,26 @@ namespace hennythingIsPossible
 {
     public class Receipt : PaymentType
     {
-        //CalculateOrderTotal calculation;
-        //List<Liquor> LiquorOrderedList;
 
-        //added List<liquor> property for the Receipt object
         public List<Liquor> LiquorListForReceipt { get; set; }
 
         public List<ReceiptLineItem> ReceiptLineItemsList { get; set; }
 
-        
-
-        //public Receipt()
-        //{
-        //    //this.calculation = calculation;
-        //    var LiquorOrderedList = new List<Liquor>();
-        //    var calculations = new CalculateOrderTotal();
-        //    LiquorListForReceipt = calculations.liquorOrderList;
-        //}
-
-        //added a new constructor to take in an OrderedItem object -mattyo
-        //public Receipt(OrderedItems orderedItems)
-        //{
-        //    LiquorListForReceipt = orderedItems.LiquorOrderList;
-           
-        //}
 
         public Receipt(CalculateOrderTotal calculatedOrder)
         {     
             LiquorListForReceipt = calculatedOrder.liquorOrderList;
             ReceiptLineItemsList = new List<ReceiptLineItem>();
             UpdateReceiptLineItems();
-
+            PaymentStatus = PaymentStatusEnum.Pending;
           
         }
-        //Moved methods from PaymentType class to Receipt class.
-        //Nested Cash, Check, and CreditCard functions inside the respective reciept functions.
-        //Nested Reciept functions inside the main Payment method.
-        public void SelectPaymentOption()
+
+        public void SelectPaymentMethod()
         {
-            //string paymentMathod = "";
+
+            //add evaluation if paymentstatus = paymentstatusenum.pending then run logic. else "already paid"
+
             bool run = true;
             while (run == true)
             {
@@ -72,64 +53,69 @@ namespace hennythingIsPossible
                 }
                 if (input == 1)
                 {
-                    CashReciept();
-                    //paymentMathod = "Cash";
+                    ProcessCashPayment();
+                    PaymentMethod = PaymentMethodEnum.Cash;
+                    PaymentStatus = PaymentStatusEnum.Complete;
+
                 }
                 else if (input == 2)
                 {
-                    CreditCardReciept();
-                    //paymentMathod = "Credit Card";
+                    ProcessCreditCardPayment();
+                    PaymentMethod = PaymentMethodEnum.CreditCard;
+                    PaymentStatus = PaymentStatusEnum.Complete;
+
 
                 }
                 else if (input == 3)
                 {
-
-                    CheckReciept();
-                    //paymentMathod = "Check";
+                    ProcessCheckPayment();
+                    PaymentMethod = PaymentMethodEnum.Check;
+                    PaymentStatus = PaymentStatusEnum.Complete;
+                    Console.WriteLine(CheckRoutingNumber);
+                    Console.WriteLine(CheckAccountNumber);
                 }
             }
-            //return paymentMathod;
 
         }
 
-        public void CashReciept()
-        {
-            ProcessCashPayment();
-            //Console.WriteLine();
+        //public void CashReciept()
+        //{
+        //    ProcessCashPayment();
+        //    //Console.WriteLine();
 
-            foreach (var item in LiquorListForReceipt)
-            {
-                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+        //    foreach (var item in LiquorListForReceipt)
+        //    {
+        //        Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
 
-            }
-        }
+        //    }
+        //}
 
-        public void CreditCardReciept()
-        {
-            ProcessCreditCardPayment();
-            Console.WriteLine(CreditCardCvv);
-            Console.WriteLine(CreditCardExpiration);
-            Console.WriteLine(CreditCardNumber);
+        //public void CreditCardReciept()
+        //{
+        //    ProcessCreditCardPayment();
+        //    Console.WriteLine(CreditCardCvv);
+        //    Console.WriteLine(CreditCardExpiration);
+        //    Console.WriteLine(CreditCardNumber);
 
-            foreach (var item in LiquorListForReceipt)
-            {
-                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+        //    foreach (var item in LiquorListForReceipt)
+        //    {
+        //        Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
 
-            }
-        }
+        //    }
+        //}
 
-        public void CheckReciept()
-        {
-            ProcessCheckPayment();
-            Console.WriteLine(CheckRoutingNumber);
-            Console.WriteLine(CheckAccountNumber);
+        //public void CheckReciept()
+        //{
+        //    ProcessCheckPayment();
+        //    Console.WriteLine(CheckRoutingNumber);
+        //    Console.WriteLine(CheckAccountNumber);
 
-            foreach (var item in LiquorListForReceipt)
-            {
-                Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
+        //    foreach (var item in LiquorListForReceipt)
+        //    {
+        //        Console.WriteLine((string.Format("{0} {1:C2}", item.Name, item.Price)));
 
-            }
-        }
+        //    }
+        //}
 
         public void ProcessCheckPayment()
         {
@@ -152,14 +138,14 @@ namespace hennythingIsPossible
                 else
                 {
                     Console.WriteLine("Invalid");
-                    SelectPaymentOption();
+                    SelectPaymentMethod();
                 }
 
             }
             else
             {
                 Console.WriteLine("Invalid.");
-                SelectPaymentOption();
+                SelectPaymentMethod();
             }
 
         }
@@ -229,7 +215,7 @@ namespace hennythingIsPossible
                         {
                             Console.WriteLine("invalid CVV number.");
                             Console.WriteLine("Decline");
-                            SelectPaymentOption();
+                            SelectPaymentMethod();
                             break;
                         }
                     }
@@ -238,7 +224,7 @@ namespace hennythingIsPossible
                     {
                         Console.WriteLine("invalid expiration date.");
                         Console.WriteLine("Decline");
-                        SelectPaymentOption();
+                        SelectPaymentMethod();
                         break;
 
                     }
@@ -250,7 +236,7 @@ namespace hennythingIsPossible
                 {
                     Console.WriteLine("invalid credit card number.");
                     Console.WriteLine("Decline");
-                    SelectPaymentOption();
+                    SelectPaymentMethod();
                     break;
                 }
             }

@@ -8,7 +8,11 @@ namespace hennythingIsPossible
 
     public class PaymentType
     {
-        public string PaymentMethod { get; set; }
+        public Enum PaymentMethod { get; set; }
+
+        public DateTime PaymentDate { get; set; }
+
+        public Enum PaymentStatus { get; set; }   
 
         public string CreditCardExpiration { get; set; }
 

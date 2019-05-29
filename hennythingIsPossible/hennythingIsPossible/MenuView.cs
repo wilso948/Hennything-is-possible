@@ -53,7 +53,7 @@ namespace hennythingIsPossible
             Console.WriteLine();
             Console.WriteLine("---------------------------");
             Console.WriteLine($"Total units in cart: {receipt.LiquorListForReceipt.Count}");
-            Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.subtotal));
+            Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.Subtotal));
             Console.WriteLine("---------------------------");
 
         }
@@ -62,6 +62,13 @@ namespace hennythingIsPossible
         {
             Console.WriteLine(string.Format("{0, 70} {1} {2, 15} {3:C2}","Items in cart: ", order.LiquorOrderList.Count, "Subtotal: ", order.SubTotal));
 
+        }
+
+        public static void DisplayPaymentSummary(Receipt receipt)
+        {
+            Console.WriteLine($"Payment Method: {receipt.PaymentMethod}");
+            Console.WriteLine($"Payment Date {receipt.PaymentDate}");
+            Console.WriteLine($"Payment Status: ");
         }
     }
 }
