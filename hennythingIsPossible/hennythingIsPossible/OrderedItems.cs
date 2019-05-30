@@ -35,8 +35,8 @@ namespace hennythingIsPossible
 
         public void RecalculateOrderTotals()
             {
-            SubTotal = 0;
-            GrandTotal = 0;
+                SubTotal = 0;
+                GrandTotal = 0;
                 //logic to calculate subtotals and set properties:
                 //foreach item in LiquorOrderList, Subtotal = item.Price + Subtotal
                 foreach (var liquor in LiquorOrderList)

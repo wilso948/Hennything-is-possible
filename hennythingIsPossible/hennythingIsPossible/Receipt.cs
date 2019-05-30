@@ -17,7 +17,7 @@ namespace hennythingIsPossible
 
         public Receipt(CalculateOrderTotal calculatedOrder)
         {     
-            LiquorListForReceipt = calculatedOrder.liquorOrderList;
+            LiquorListForReceipt = calculatedOrder.LiquorOrderListForCalculations;
             ReceiptLineItemsList = new List<ReceiptLineItem>();
             UpdateReceiptLineItems();
             PaymentStatus = PaymentStatusEnum.Pending;

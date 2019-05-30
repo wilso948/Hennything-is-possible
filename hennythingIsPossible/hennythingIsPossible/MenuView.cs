@@ -106,7 +106,7 @@ namespace hennythingIsPossible
         {
             Console.WriteLine($"Payment Method: {receipt.PaymentMethod}");
             Console.WriteLine($"Payment Date {receipt.PaymentDate}");
-            Console.WriteLine($"Payment Status: ");
+            Console.WriteLine($"Payment Status: "); 
         }
     }
 }
