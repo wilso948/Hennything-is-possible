@@ -9,6 +9,7 @@ namespace hennythingIsPossible
 
         public static void Run()
         {
+            DisplayLogo.DisplayLogoArt();
             InfoCenter infoCenter = new InfoCenter();
             Controller obj = new Controller();
             OrderedItems customerOrder = new OrderedItems();
