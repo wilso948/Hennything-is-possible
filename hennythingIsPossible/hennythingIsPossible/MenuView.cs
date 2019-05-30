@@ -50,7 +50,7 @@ namespace hennythingIsPossible
 
             Console.WriteLine();
             Console.WriteLine("---------------------------");
-            Console.WriteLine(string.Format("{0, -15} {1} ", "Total units:", receipt.LiquorListForReceipt.Count));
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Total units:", orderCalculations.LiquorOrderListForCalculations.Count));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Subtotal:", orderCalculations.Subtotal));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Sales Tax:", orderCalculations.SalesTaxAmount));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Grandtotal:", orderCalculations.GrandTotal));
@@ -82,6 +82,7 @@ namespace hennythingIsPossible
             
             Console.WriteLine();
             Console.WriteLine("---------------------------");
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Total units:", orderCalculations.LiquorOrderListForCalculations.Count));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Subtotal:", orderCalculations.Subtotal));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Sales Tax:", orderCalculations.SalesTaxAmount));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Grandtotal:", orderCalculations.GrandTotal));
@@ -111,18 +112,21 @@ namespace hennythingIsPossible
 
         public static void DisplayCashPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
-            Console.WriteLine("Paid: " + "$" + orderCalculations.CashAmount);
-            Console.WriteLine("Change: " + "$" + orderCalculations.ChangeCash);
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Cash Paid:", orderCalculations.AmountPaid));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Change:", orderCalculations.ChangeCash));
+
         }
 
         public static void DisplayCheckPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
-
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Check Amt Paid:", orderCalculations.AmountPaid));
+            //add checking info
         }
 
         public static void DisplayCreditPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
-
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Credit Amt Paid:", orderCalculations.AmountPaid));
+            //add masked credit card number
         }
 
         public static void DisplayCartSummary(OrderedItems order, CalculateOrderTotal calculatedOrder)

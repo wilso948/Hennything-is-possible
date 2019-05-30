@@ -24,10 +24,8 @@ namespace hennythingIsPossible
           
         }
 
-        public void SelectPaymentMethod()
+        public void SelectPaymentMethod(CalculateOrderTotal orderCalculation)
         {
-
-            //add evaluation if paymentstatus = paymentstatusenum.pending then run logic. else "already paid"
 
             bool run = true;
             while (run == true)
@@ -53,38 +51,22 @@ namespace hennythingIsPossible
                     run = true;
                 }
                 if (input == 1)
-                {
-                   
-                    PaymentMethod = PaymentMethodEnum.Cash;
-                    ProcessCashPayment();
-                    PaymentDate = DateTime.Now;
-
-                    PaymentStatus = PaymentStatusEnum.Complete;
-
+                {                  
+                    ProcessCashPayment(orderCalculation);
                 }
                 else if (input == 2)
                 {
-                    PaymentMethod = PaymentMethodEnum.CreditCard;
-                    ProcessCreditCardPayment();
-                    PaymentDate = DateTime.Now;
-
-                    PaymentStatus = PaymentStatusEnum.Complete;
+                    ProcessCreditCardPayment(orderCalculation);
                 }
                 else if (input == 3)
                 {
-                    PaymentMethod = PaymentMethodEnum.Check;
-                    ProcessCheckPayment();
-                    PaymentDate = DateTime.Now;
-
-                    PaymentStatus = PaymentStatusEnum.Complete;
-                    //Console.WriteLine(CheckRoutingNumber);
-                    //Console.WriteLine(CheckAccountNumber);
+                    ProcessCheckPayment(orderCalculation);
                 }
             }
 
         }
 
-        public void ProcessCheckPayment()
+        public void ProcessCheckPayment(CalculateOrderTotal orderCalculation)
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
             Regex account = new Regex("^[0-9]{10,17}$");
@@ -100,24 +82,28 @@ namespace hennythingIsPossible
                 Match validAccount = account.Match(CheckAccountNumber);
                 if (validAccount.Success)
                 {
-                    Console.WriteLine("valid");
+                    Console.WriteLine("Check Information Valid");
+                    orderCalculation.AmountPaid = orderCalculation.GrandTotal;
+                    PaymentMethod = PaymentMethodEnum.Check;
+                    PaymentDate = DateTime.Now;
+                    PaymentStatus = PaymentStatusEnum.Complete;
                 }
                 else
                 {
                     Console.WriteLine("Account Number Invalid");
-                    SelectPaymentMethod();
+                    SelectPaymentMethod(orderCalculation);
                 }
 
             }
             else
             {
                 Console.WriteLine("Account Number Invalid.");
-                SelectPaymentMethod();
+                SelectPaymentMethod(orderCalculation);
             }
 
         }
 
-        public double ProcessCashPayment()
+        public double ProcessCashPayment(CalculateOrderTotal orderCalculation)
         {
             var calc = new CalculateOrderTotal();
             bool checkcash = true;
@@ -130,9 +116,12 @@ namespace hennythingIsPossible
                     Console.WriteLine("You entered invalid amount!");
                     checkcash = true;
                 }
-                else if (calc.DoesUserHaveEnoughCashFunds(userEnteredCash))
+                else if (orderCalculation.DoesUserHaveEnoughCashFunds(userEnteredCash))
                 {
                     Console.WriteLine("Enough funds");
+                    PaymentMethod = PaymentMethodEnum.Cash;
+                    PaymentDate = DateTime.Now;
+                    PaymentStatus = PaymentStatusEnum.Complete;
                     checkcash = false;
                 }
                 else
@@ -144,7 +133,7 @@ namespace hennythingIsPossible
             return userEnteredCash;
         }
 
-        public void ProcessCreditCardPayment()
+        public void ProcessCreditCardPayment(CalculateOrderTotal orderCalculation)
         {
             bool checkout = true;
             while (checkout)
@@ -176,13 +165,17 @@ namespace hennythingIsPossible
                         if (validateCvv.Success)
                         {
                             Console.WriteLine("valid");
+                            PaymentMethod = PaymentMethodEnum.CreditCard;
+                            orderCalculation.AmountPaid = orderCalculation.GrandTotal;
+                            PaymentDate = DateTime.Now;
+                            PaymentStatus = PaymentStatusEnum.Complete;
                             break;
                         }
                         else
                         {
                             Console.WriteLine("invalid CVV number.");
                             Console.WriteLine("Decline");
-                            SelectPaymentMethod();
+                            SelectPaymentMethod(orderCalculation);
                             break;
                         }
                     }
@@ -191,7 +184,7 @@ namespace hennythingIsPossible
                     {
                         Console.WriteLine("invalid expiration date.");
                         Console.WriteLine("Decline");
-                        SelectPaymentMethod();
+                        SelectPaymentMethod(orderCalculation);
                         break;
 
                     }
@@ -201,7 +194,7 @@ namespace hennythingIsPossible
                 {
                     Console.WriteLine("invalid credit card number.");
                     Console.WriteLine("Decline");
-                    SelectPaymentMethod();
+                    SelectPaymentMethod(orderCalculation);
                     break;
                 }
             }
