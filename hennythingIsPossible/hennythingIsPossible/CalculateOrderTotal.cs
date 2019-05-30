@@ -8,9 +8,10 @@ namespace hennythingIsPossible
    public class CalculateOrderTotal 
     {
 
-        //PaymentType obj = new PaymentType(); 
+        PaymentType obj = new PaymentType(); 
         public double Subtotal;
-        public double SalesTax;
+        public double SalesTaxPercent;
+        public double SalesTaxAmount;
         public double GrandTotal;
         public double CashAmount;
         public double ChangeCash;
@@ -36,7 +37,7 @@ namespace hennythingIsPossible
         {
             List<double> costs = new List<double>();
             Subtotal = 0;
-            SalesTax = 0.06;
+            SalesTaxPercent = 0.06;
             GrandTotal = 0;
 
             foreach (var liquor in liquorOrderList)
@@ -45,8 +46,8 @@ namespace hennythingIsPossible
             }
             costs.Add(Subtotal);
             double sum = costs.Sum();
-            double amountOfSalesTax = Math.Round(sum * SalesTax, 2);
-            GrandTotal =sum + amountOfSalesTax;
+            SalesTaxAmount = Math.Round(sum * SalesTaxPercent, 2);
+            GrandTotal =sum + SalesTaxAmount;
 
         }
 
