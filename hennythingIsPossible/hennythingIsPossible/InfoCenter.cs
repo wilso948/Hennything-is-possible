@@ -36,15 +36,20 @@ namespace hennythingIsPossible
             {
                 int index = 1; 
                 Console.WriteLine("Which one would you like to learn about?");
+                
 
                 foreach (var item in Types)
                 {
                     Console.WriteLine(index + ".) " + item.Name);
                     index++;
                 }
+                Console.WriteLine("");
+                Console.Write("Enter a number: ");
 
                 int userInput = int.Parse(Console.ReadLine());
-                
+
+                Console.WriteLine("");
+
                 Console.WriteLine("{1}. Hit enter to see an example", Types[userInput - 1].Name, Types[userInput - 1].Definition);
                 Console.ReadLine();
 
@@ -55,6 +60,7 @@ namespace hennythingIsPossible
                 {
                     run = false; // we need to make sure we dont fall into a loop here!!!!
                 }
+                
             }
 
 

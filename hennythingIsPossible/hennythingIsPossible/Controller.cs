@@ -74,17 +74,33 @@ namespace hennythingIsPossible
 
             return filteredLiquorList;
         }
-
+        
         public void PickLiquorFromFilteredList(List<Liquor> filteredList)
         {
 
             MenuView filteredListView = new MenuView(filteredList);
             filteredListView.DisplayLiquorMenu();
 
-            Console.Write($"\nPick an alcohol to choose from the chosen category (1-{filteredList.Count}): ");
-            var pickLiquor = int.Parse(Console.ReadLine());
+            bool userInputValid = false;
+            do
+            {
+                Console.Write($"\nPick an alcohol to choose from the chosen category (1-{filteredList.Count}): ");
+                userInputValid = int.TryParse(Console.ReadLine(), out int pickLiquor);
+                if (pickLiquor >= 1 && pickLiquor < filteredList.Count && userInputValid)
+                {
+                    CurrentLiquorPick = filteredList[pickLiquor - 1];
+                }
+                else
+                {
+                    Console.WriteLine("Sorry your input is invalid.  Try again!");
+                    userInputValid = false;
+                }
 
-            CurrentLiquorPick = filteredList[pickLiquor - 1];
+                Console.ReadKey();
+            } while (userInputValid == false);
+           
+
+            
 
         }
 
