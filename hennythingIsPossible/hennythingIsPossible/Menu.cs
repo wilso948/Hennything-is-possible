@@ -11,8 +11,9 @@ namespace hennythingIsPossible
             Console.Clear();
 
             HennyArt.DisplayHennyArt();
-            MenuView.DisplayCartSummary(order, calculatedOrder);
-
+           MenuView.DisplayCartSummary(order, calculatedOrder);
+            ConsoleColor color = ConsoleColor.DarkYellow;
+            Console.ForegroundColor = color;
             Console.WriteLine();
             Console.WriteLine("-- Main Menu --");
             Console.WriteLine("1). Display Inventory");
