@@ -12,6 +12,7 @@ namespace hennythingIsPossible
         public List<Liquor> LiquorListForReceipt { get; set; }
 
         public List<ReceiptLineItem> ReceiptLineItemsList { get; set; }
+       
 
 
         public Receipt(CalculateOrderTotal calculatedOrder)
@@ -53,9 +54,10 @@ namespace hennythingIsPossible
                 }
                 if (input == 1)
                 {
-                    ProcessCashPayment();
+                   
                     PaymentMethod = PaymentMethodEnum.Cash;
                     PaymentStatus = PaymentStatusEnum.Complete;
+                    ProcessCashPayment();
 
                 }
                 else if (input == 2)
@@ -257,11 +259,13 @@ namespace hennythingIsPossible
                     
                 })
                 .ToList();
+           
 
             foreach (var item in ReceiptLineItemsList)
             {
                 item.LineItemSubtotal = item.Quantity * item.UnitPrice;
             }
+           
 
             //foreach (var receiptLineItem in ReceiptLineItemsList)
             //{

@@ -19,6 +19,8 @@ namespace hennythingIsPossible
 
             do
             {
+               // ConsoleColor color = ConsoleColor.DarkRed;
+               // Console.ForegroundColor = color;
                 switch (Menu.DisplayMainMenu(customerOrder, orderCalculations))
                 {
                     case MenuEnum.DisplayInventory:
@@ -35,10 +37,9 @@ namespace hennythingIsPossible
                     case MenuEnum.CashOut:
                         customerOrder.RecalculateOrderTotals();
                         Receipt receiptObj = new Receipt(orderCalculations);
-                        orderCalculations.Totals();
-                        Console.WriteLine(orderCalculations.Subtotal);
-                        MenuView.DisplayCheckOutCart(receiptObj, orderCalculations);
                         receiptObj.SelectPaymentMethod();
+                        orderCalculations.Totals();
+                        MenuView.DisplayCheckOutCart(receiptObj, orderCalculations);
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("\nBye!");
