@@ -33,7 +33,8 @@ namespace hennythingIsPossible
         public static void DisplayCheckoutCart(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
             Console.Clear();
-
+            ConsoleColor color = ConsoleColor.Red;
+            Console.ForegroundColor = color;
             Console.WriteLine();
             Console.WriteLine("------------------------------- SHOPPING CART -------------------------------");
             Console.WriteLine();

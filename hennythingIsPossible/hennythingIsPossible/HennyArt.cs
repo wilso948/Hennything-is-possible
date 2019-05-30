@@ -8,8 +8,8 @@ namespace hennythingIsPossible
     {
         public static void DisplayHennyArt()
         {
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Magenta;
 
             Console.Title = "Hennything Is Possible Liquor Store";
             //            string title = @"
