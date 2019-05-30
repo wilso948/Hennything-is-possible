@@ -61,7 +61,7 @@ namespace hennythingIsPossible
         {
             Console.Clear();
 
-            ConsoleColor color = ConsoleColor.DarkRed;
+            ConsoleColor color = ConsoleColor.Red;
             Console.ForegroundColor = color;
             Console.WriteLine("----------------------------- TRANSACTION RECORD -----------------------------");
             Console.WriteLine();

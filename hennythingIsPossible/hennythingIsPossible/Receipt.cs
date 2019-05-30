@@ -30,9 +30,14 @@ namespace hennythingIsPossible
             bool run = true;
             while (run == true)
             {
+                ConsoleColor color = ConsoleColor.Cyan;
+                Console.ForegroundColor = color;
                 Console.Write("How would you like to pay?\n1.) Cash\n2.) Credit Card\n3.) Check");
                 Console.WriteLine();
                 int input = 0;
+
+                color = ConsoleColor.Red;
+                Console.ForegroundColor = color;
 
                 bool option = int.TryParse(Console.ReadLine(), out input);
 
@@ -138,13 +143,14 @@ namespace hennythingIsPossible
             bool checkout = true;
             while (checkout)
             {
-                Console.Write("Please enter your credit card number (16 digits, no symbols): ");
-                Regex cardNumber = new Regex(@"^(?:5[1-5][0-9]{2}|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}$");
-                Regex cardExpiration = new Regex(@"^((0[1-9])|(1[0-2]))\/((2019)|(202[0-9]))$");
-                Regex cardCvv = new Regex(@"^[0-9]{3,4}$");
 
-                //string creditExperition;
-                //string cvv;
+                  Console.Write("Please enter your credit card number (16 digits, no symbols): ");
+                  Regex cardNumber = new Regex(@"(^[0-9]{16})$");
+                  Regex cardExpiration = new Regex(@"(^[0-1]{1}[0-9]{1}[- /.][2]{1}[0]{1}[1-9]{1}[0-9]{1})$");
+                  Regex cardCvv = new Regex(@"(^[0-9]{3})$");
+
+               // string creditExperition;
+               // string cvv;
                 CreditCardNumber = Console.ReadLine();
                 Match validateCreditNumber = cardNumber.Match(CreditCardNumber);
 
@@ -222,5 +228,6 @@ namespace hennythingIsPossible
             }
 
         }
+       
     }
 }

@@ -38,6 +38,7 @@ namespace hennythingIsPossible
                         MenuView.DisplayCheckoutCart(receiptObj, orderCalculations);
                         receiptObj.SelectPaymentMethod(orderCalculations);                
                         MenuView.DisplayTransactionRecord(receiptObj, orderCalculations);
+                       
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("\nBye!");

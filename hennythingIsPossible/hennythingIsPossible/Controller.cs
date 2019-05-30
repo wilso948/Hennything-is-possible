@@ -87,7 +87,7 @@ namespace hennythingIsPossible
             {
                 Console.Write($"\nPick an alcohol to choose from the chosen category (1-{filteredList.Count}): ");
                 userInputValid = int.TryParse(Console.ReadLine(), out int pickLiquor);
-                if (pickLiquor >= 1 && pickLiquor < filteredList.Count && userInputValid)
+                if (pickLiquor >= 1 && pickLiquor <= filteredList.Count && userInputValid)
                 {
                     CurrentLiquorPick = filteredList[pickLiquor - 1];
                 }
