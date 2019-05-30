@@ -96,12 +96,9 @@ namespace hennythingIsPossible
                     userInputValid = false;
                 }
 
-                Console.ReadKey();
+                //Console.ReadKey();
             } while (userInputValid == false);
            
-
-            
-
         }
 
         public void AddAlcoholToOrder(OrderedItems order, Liquor alcoholPick)

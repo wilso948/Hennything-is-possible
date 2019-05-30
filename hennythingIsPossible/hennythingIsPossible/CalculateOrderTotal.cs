@@ -49,12 +49,11 @@ namespace hennythingIsPossible
             costs.Add(Subtotal);
             double sum = costs.Sum();
 
-            //double amountOfSalesTax = Math.Round(sum * SalesTax, 2);
+            double amountOfSalesTax = Math.Round(sum * SalesTaxPercent, 2);
             GrandTotal = sum + amountOfSalesTax;
 
             SalesTaxAmount = Math.Round(sum * SalesTaxPercent, 2);
             GrandTotal =sum + SalesTaxAmount;
-
 
         }
 
