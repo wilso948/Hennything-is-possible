@@ -24,6 +24,7 @@ namespace hennythingIsPossible
 
         public void BuyProduct(Controller obj, OrderedItems customerOrder)
         {
+            Console.Clear();
             string userInput = null;
             do
             {

@@ -8,13 +8,13 @@ namespace hennythingIsPossible
    public class CalculateOrderTotal 
     {
 
-        PaymentType obj = new PaymentType(); 
-        public double Subtotal;
-        public double SalesTaxPercent;
-        public double SalesTaxAmount;
-        public double GrandTotal;
-        public double CashAmount;
-        public double ChangeCash;
+        //PaymentType obj = new PaymentType(); 
+        public double Subtotal { get; set; }
+        public double SalesTaxPercent { get; set; } 
+        public double SalesTaxAmount { get; set; }
+        public double GrandTotal { get; set; }
+        public double AmountPaid { get; set; }
+        public double ChangeCash { get; set; }
         public List<Liquor> liquorOrderList;
 
         public List<Liquor> LiquorOrderListForCalculations { get; set; }
@@ -24,11 +24,11 @@ namespace hennythingIsPossible
             LiquorOrderListForCalculations = order.LiquorOrderList;
             Totals();
         }
-        public CalculateOrderTotal(List<Liquor> liquorOrderList)
-        {
-            this.liquorOrderList = liquorOrderList;
-            Totals();
-        }
+        //public CalculateOrderTotal(List<Liquor> liquorOrderList)
+        //{
+        //    this.liquorOrderList = liquorOrderList;
+        //    Totals();
+        //}
 
         public CalculateOrderTotal()
         {
@@ -67,7 +67,7 @@ namespace hennythingIsPossible
             else
             {
                 ChangeCash = cashAmount - GrandTotal;
-                this.CashAmount = cashAmount;
+                this.AmountPaid = cashAmount;
                 return true;
             }
         }
