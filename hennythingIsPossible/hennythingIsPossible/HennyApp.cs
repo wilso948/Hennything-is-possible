@@ -7,7 +7,7 @@ namespace hennythingIsPossible
     public class HennyApp
     {
 
-        public static void Run()
+        public static bool Run()
         {
             DisplayLogo.DisplayLogoArt();
             InfoCenter infoCenter = new InfoCenter();
@@ -16,6 +16,7 @@ namespace hennythingIsPossible
             CalculateOrderTotal orderCalculations = new CalculateOrderTotal(customerOrder);
             customerOrder.SalesTaxAmount = 0.06;
             bool userWantsToQuit = false;
+            bool newOrder = false;
          
             do
             {
@@ -39,7 +40,9 @@ namespace hennythingIsPossible
                         MenuView.DisplayCheckoutCart(receiptObj, orderCalculations);
                         receiptObj.SelectPaymentMethod(orderCalculations);                
                         MenuView.DisplayTransactionRecord(receiptObj, orderCalculations);
-                       
+                        break;
+                    case MenuEnum.NewOrder:
+                        newOrder = CompleteOrder.NewOrder();
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("\nBye!");
@@ -49,6 +52,10 @@ namespace hennythingIsPossible
                         Console.WriteLine("\nTry again");
                         break;
                 }
+                if (newOrder == true)
+                {
+                    return newOrder;
+                }
 
                 Console.WriteLine("\n... press any key to continue ...");
                 Console.ReadKey();
@@ -56,6 +63,7 @@ namespace hennythingIsPossible
             } while (userWantsToQuit.Equals(false));
 
             Console.ReadLine();
+            return newOrder;
         }
     }
 }

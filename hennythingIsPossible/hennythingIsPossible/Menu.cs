@@ -30,7 +30,9 @@ namespace hennythingIsPossible
             Console.WriteLine("4). Cash Out");
            // color = ConsoleColor.Blue;
            // Console.ForegroundColor = color;
-            Console.WriteLine("5). Quit");
+            Console.WriteLine("5). New Order");
+            Console.WriteLine("6). Quit");
+
             Console.WriteLine();
            // color = ConsoleColor.DarkMagenta;
            // Console.ForegroundColor = color;

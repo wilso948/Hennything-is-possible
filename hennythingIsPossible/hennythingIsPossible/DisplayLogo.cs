@@ -9,6 +9,7 @@ namespace hennythingIsPossible
 
         public static void DisplayLogoArt()
         {
+            Console.Clear();
             Console.WriteLine("\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("\t\t                  GG    *LOWEST*       GG");

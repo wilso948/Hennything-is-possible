@@ -8,8 +8,13 @@ namespace hennythingIsPossible
     {
         static void Main(string[] args)
         {
-         
-            HennyApp.Run();
+
+            var startNewOrder = false;
+            do
+            {
+                startNewOrder =  HennyApp.Run();
+
+            } while (startNewOrder == true);
 
         }
     }
