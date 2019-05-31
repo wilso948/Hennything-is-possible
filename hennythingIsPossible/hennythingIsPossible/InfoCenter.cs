@@ -65,7 +65,7 @@ namespace hennythingIsPossible
                 string answer = Console.ReadLine().ToLower();
                 if (answer == "n")
                 {
-                    run = false; // we need to make sure we dont fall into a loop here!!!!
+                    run = false; 
                 }
                 
             }

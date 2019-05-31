@@ -8,7 +8,6 @@ namespace hennythingIsPossible
    public class CalculateOrderTotal 
     {
 
-        //PaymentType obj = new PaymentType(); 
         public double Subtotal { get; set; }
         public double SalesTaxPercent { get; set; } 
         public double SalesTaxAmount { get; set; }
@@ -24,11 +23,6 @@ namespace hennythingIsPossible
             LiquorOrderListForCalculations = order.LiquorOrderList;
             Totals();
         }
-        //public CalculateOrderTotal(List<Liquor> liquorOrderList)
-        //{
-        //    this.liquorOrderList = liquorOrderList;
-        //    Totals();
-        //}
 
         public CalculateOrderTotal()
         {

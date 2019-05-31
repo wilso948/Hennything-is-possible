@@ -11,10 +11,6 @@ namespace hennythingIsPossible
 
         public Liquor CurrentLiquorPick { get; set; }
 
-        
-        //MenuView obj;
-        //ConsoleColor color;
-
         public Controller()
         {
             Menu = Inventory.CreateInventoryList(Inventory.ImportFileToString());
@@ -57,8 +53,6 @@ namespace hennythingIsPossible
 
             return Console.ReadLine();
 
-            //add validation so user can enter number instead of type name
-
         }
 
         public List<Liquor> FilterListByCategory(List<Liquor> menu, string category)
@@ -97,7 +91,6 @@ namespace hennythingIsPossible
                     userInputValid = false;
                 }
 
-                //Console.ReadKey();
             } while (userInputValid == false);
            
         }

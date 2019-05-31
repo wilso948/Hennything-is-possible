@@ -69,11 +69,8 @@ namespace hennythingIsPossible
 
             color = ConsoleColor.DarkCyan;
             Console.ForegroundColor = color;
-            //string order = string.Format("{0,-40} {1,-40} {2,-40}", "Name", "Quantity", "Price per item");
-            //Console.WriteLine(order);
             Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10} {5, 10}", "", "ID", "Name", "Quantity", "Unit Price", "Item Subtotal"));
-            // color = ConsoleColor.Blue;
-            //Console.ForegroundColor = color;
+
             int i = 0;
             foreach (var item in receipt.ReceiptLineItemsList)
             {
@@ -115,19 +112,16 @@ namespace hennythingIsPossible
         {
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Cash Paid:", orderCalculations.AmountPaid));
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Change:", orderCalculations.ChangeCash));
-
         }
 
         public static void DisplayCheckPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Check Amt Paid:", orderCalculations.AmountPaid));
-            //add checking info
         }
 
         public static void DisplayCreditPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
             Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Credit Amt Paid:", orderCalculations.AmountPaid));
-            //add masked credit card number
         }
 
         public static void DisplayCartSummary(OrderedItems order, CalculateOrderTotal calculatedOrder)

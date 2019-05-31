@@ -7,8 +7,6 @@ namespace hennythingIsPossible
     public class ReceiptLineItem
     {
 
-        //public List<ReceiptLineItem> ReceiptLineItemsList { get; set; }
-
         public int LiquorId { get; set; }
 
         public string LiquorName { get; set; }
@@ -19,10 +17,5 @@ namespace hennythingIsPossible
 
         public double UnitPrice { get; set; }
 
-
-        public void AddLiquorToReceiptLineItem(Receipt receipt)
-        {
-
-        }
     }
 }
