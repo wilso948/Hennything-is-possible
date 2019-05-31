@@ -14,7 +14,6 @@ namespace hennythingIsPossible
             {
                 // Open the text file using a stream reader.
                 string filePath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "HennyFile.txt");
-                //Console.WriteLine(startupPath);
 
                 using (StreamReader stream = new StreamReader(filePath))
                 {
@@ -45,12 +44,5 @@ namespace hennythingIsPossible
 
         }
 
-        public static void AddLiquorToFile(Liquor newLiquor)
-        {
-            //open file
-            //deconstruct object into comma-separated line
-            //write to file
-            //close file
-        }
     }
 }

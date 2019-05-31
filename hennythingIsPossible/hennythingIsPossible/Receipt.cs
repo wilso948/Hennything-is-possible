@@ -71,7 +71,6 @@ namespace hennythingIsPossible
 
         }
 
-
         public void ProcessCheckPayment(CalculateOrderTotal orderCalculation)
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
