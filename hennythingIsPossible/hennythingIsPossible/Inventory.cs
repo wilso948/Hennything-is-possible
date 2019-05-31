@@ -13,7 +13,6 @@ namespace hennythingIsPossible
             try
             {
                 // Open the text file using a stream reader.
-                //var path = Path.Combine(Directory.GetCurrentDirectory(), "\\fileName.txt");
                 string filePath = Path.Combine(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.FullName, "HennyFile.txt");
                 //Console.WriteLine(startupPath);
 
