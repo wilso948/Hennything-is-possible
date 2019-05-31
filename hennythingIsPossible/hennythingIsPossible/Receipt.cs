@@ -71,6 +71,7 @@ namespace hennythingIsPossible
 
         }
 
+
         public void ProcessCheckPayment(CalculateOrderTotal orderCalculation)
         {
             Regex routing = new Regex("^[0-9]{8,10}$");
@@ -143,14 +144,12 @@ namespace hennythingIsPossible
             bool checkout = true;
             while (checkout)
             {
+                
+                Regex cardNumber = new Regex(@"(^[0-9]{16})$");
+                Regex cardExpiration = new Regex(@"(0[1-9]|10|11|12)/[2]{1}[0-9]{3}$");
+                Regex cardCvv = new Regex(@"(^[0-9]{3})$");
 
-                  Console.Write("Please enter your credit card number (16 digits, no symbols): ");
-                  Regex cardNumber = new Regex(@"(^[0-9]{16})$");
-                  Regex cardExpiration = new Regex(@"(^[0-1]{1}[0-9]{1}[- /.][2]{1}[0]{1}[1-9]{1}[0-9]{1})$");
-                  Regex cardCvv = new Regex(@"(^[0-9]{3})$");
-
-               // string creditExperition;
-               // string cvv;
+                Console.Write("Please enter your credit card number (16 digits, no symbols): ");
                 CreditCardNumber = Console.ReadLine();
                 Match validateCreditNumber = cardNumber.Match(CreditCardNumber);
 
@@ -165,7 +164,7 @@ namespace hennythingIsPossible
                     {
                         Console.WriteLine("valid");
                         Console.WriteLine();
-                        Console.Write("Please enter the credit card CVV: ");
+                        Console.Write("Please enter the 3-digit credit card CVV: ");
                         CreditCardCvv = Console.ReadLine();
                         Match validateCvv = cardCvv.Match(CreditCardCvv);
                         if (validateCvv.Success)
