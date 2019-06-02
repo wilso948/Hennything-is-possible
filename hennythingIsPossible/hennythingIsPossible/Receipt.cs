@@ -73,37 +73,30 @@ namespace hennythingIsPossible
 
         public void ProcessCheckPayment(CalculateOrderTotal orderCalculation)
         {
-            Regex routing = new Regex("^[0-9]{8,10}$");
-            Regex account = new Regex("^[0-9]{10,17}$");
+            bool isRoutingNumberValid = false;
+            bool isAccountNumberValid = false;
 
-            Console.Write("Please enter in your routing number (8-10 digits): ");
-            CheckRoutingNumber = Console.ReadLine();
+            isRoutingNumberValid = ValidatePaymentInput("Please enter in your routing number (8-10 digits): ", new Regex("^[0-9]{8,10}$"), 3);
 
-            Match validRouting = routing.Match(CheckRoutingNumber);
-            if (validRouting.Success)
+            if (isRoutingNumberValid == true)
             {
-                Console.Write("Please enter in your account number (10-17 digits): ");
-                CheckAccountNumber = Console.ReadLine();
-                Match validAccount = account.Match(CheckAccountNumber);
-                if (validAccount.Success)
-                {
-                    Console.WriteLine("Check Information Valid");
-                    orderCalculation.AmountPaid = orderCalculation.GrandTotal;
-                    PaymentMethod = PaymentMethodEnum.Check;
-                    PaymentDate = DateTime.Now;
-                    PaymentStatus = PaymentStatusEnum.Complete;
-                }
-                else
-                {
-                    Console.WriteLine("Account Number Invalid");
-                    SelectPaymentMethod(orderCalculation);
-                }
+                isAccountNumberValid = ValidatePaymentInput("Please enter in your account number (10-17 digits): ", new Regex("^[0-9]{10,17}$"), 3);
+            }
 
+            if (isRoutingNumberValid == true && isAccountNumberValid == true)
+            {
+                Console.WriteLine("Checking Information Valid");
+                orderCalculation.AmountPaid = orderCalculation.GrandTotal;
+                PaymentMethod = PaymentMethodEnum.Check;
+                PaymentDate = DateTime.Now;
+                PaymentStatus = PaymentStatusEnum.Complete;
             }
             else
             {
-                Console.WriteLine("Account Number Invalid.");
-                SelectPaymentMethod(orderCalculation);
+                Console.WriteLine();
+                Console.WriteLine("Checking account info failed");
+                Console.WriteLine("Please try again ...");
+                Console.ReadLine();
             }
 
         }
@@ -131,7 +124,7 @@ namespace hennythingIsPossible
                 }
                 else
                 {
-                    Console.WriteLine("the payment amount wasn't enough!! .");
+                    Console.WriteLine("the payment amount wasn't enough!!");
                     checkcash = true;
                 }
             }
@@ -140,69 +133,63 @@ namespace hennythingIsPossible
 
         public void ProcessCreditCardPayment(CalculateOrderTotal orderCalculation)
         {
-            bool checkout = true;
-            while (checkout)
+
+            bool isCardNumberValid = false;
+            bool isExpirationDateValid = false;
+            bool isCardCvvValid = false;
+
+            isCardNumberValid = ValidatePaymentInput("Please enter your credit card number (16 digits, no symbols): ", new Regex(@"(^[0-9]{16})$"), 3 );
+
+            if (isCardNumberValid == true)
             {
-                
-                Regex cardNumber = new Regex(@"(^[0-9]{16})$");
-                Regex cardExpiration = new Regex(@"(0[1-9]|10|11|12)/[2]{1}[0-9]{3}$");
-                Regex cardCvv = new Regex(@"(^[0-9]{3})$");
-
-                Console.Write("Please enter your credit card number (16 digits, no symbols): ");
-                CreditCardNumber = Console.ReadLine();
-                Match validateCreditNumber = cardNumber.Match(CreditCardNumber);
-
-                if (validateCreditNumber.Success)
-                {
-                    Console.WriteLine("The card number entered is valid");
-                    Console.WriteLine();
-                    Console.Write("Please enter the credit card expiration (MM/YYYY): ");
-                    CreditCardExpiration = Console.ReadLine();
-                    Match expiration = cardExpiration.Match(CreditCardExpiration);
-                    if (expiration.Success)
-                    {
-                        Console.WriteLine("valid");
-                        Console.WriteLine();
-                        Console.Write("Please enter the 3-digit credit card CVV: ");
-                        CreditCardCvv = Console.ReadLine();
-                        Match validateCvv = cardCvv.Match(CreditCardCvv);
-                        if (validateCvv.Success)
-                        {
-                            Console.WriteLine("valid");
-                            PaymentMethod = PaymentMethodEnum.CreditCard;
-                            orderCalculation.AmountPaid = orderCalculation.GrandTotal;
-                            PaymentDate = DateTime.Now;
-                            PaymentStatus = PaymentStatusEnum.Complete;
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("invalid CVV number.");
-                            Console.WriteLine("Decline");
-                            SelectPaymentMethod(orderCalculation);
-                            break;
-                        }
-                    }
-                    else
-
-                    {
-                        Console.WriteLine("invalid expiration date.");
-                        Console.WriteLine("Decline");
-                        SelectPaymentMethod(orderCalculation);
-                        break;
-
-                    }
-
-                }
-                else
-                {
-                    Console.WriteLine("invalid credit card number.");
-                    Console.WriteLine("Decline");
-                    SelectPaymentMethod(orderCalculation);
-                    break;
-                }
+                isExpirationDateValid = ValidatePaymentInput("Please enter expiration date (mm/yyyy): ", new Regex(@"(0[1-9]|10|11|12)/[2]{1}[0-9]{3}$"), 3);
             }
 
+            if (isCardNumberValid == true && isExpirationDateValid == true)
+            {
+                isCardCvvValid = ValidatePaymentInput("Please enter 3-digit CVV: ", new Regex(@"(^[0-9]{3})$"), 3);
+            }
+
+            if (isCardNumberValid == true && isExpirationDateValid == true && isCardCvvValid == true)
+            {
+                Console.WriteLine("Credit card payment successful");
+                PaymentMethod = PaymentMethodEnum.CreditCard;
+                orderCalculation.AmountPaid = orderCalculation.GrandTotal;
+                PaymentDate = DateTime.Now;
+                PaymentStatus = PaymentStatusEnum.Complete;
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("Credit card payment failed");
+                Console.WriteLine("Please try again ...");
+                Console.ReadLine();
+            }
+
+        }
+
+        public bool ValidatePaymentInput(string inputPrompt, Regex pattern, int retryLimit)
+        {
+            Match validateInput;
+
+            var retryCount = 0;
+            do
+            {
+                Console.Write(inputPrompt);
+                validateInput = pattern.Match(Console.ReadLine());
+                retryCount++;
+
+            } while (!validateInput.Success && retryCount <= retryLimit);
+
+            if (validateInput.Success)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
         }
 
         public void UpdateReceiptLineItems()
