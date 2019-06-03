@@ -179,7 +179,7 @@ namespace hennythingIsPossible
                 validateInput = pattern.Match(Console.ReadLine());
                 retryCount++;
 
-            } while (!validateInput.Success && retryCount <= retryLimit);
+            } while (!validateInput.Success && retryCount < retryLimit);
 
             if (validateInput.Success)
             {
