@@ -9,6 +9,7 @@ namespace hennythingIsPossible
 
         public static void Run()
         {
+            DisplayLogo.DisplayLogoArt();
             InfoCenter infoCenter = new InfoCenter();
             Controller obj = new Controller();
             OrderedItems customerOrder = new OrderedItems();
@@ -16,11 +17,8 @@ namespace hennythingIsPossible
             customerOrder.SalesTaxAmount = 0.06;
             bool userWantsToQuit = false;
          
-
             do
             {
-               // ConsoleColor color = ConsoleColor.DarkRed;
-               // Console.ForegroundColor = color;
                 switch (Menu.DisplayMainMenu(customerOrder, orderCalculations))
                 {
                     case MenuEnum.DisplayInventory:
@@ -37,9 +35,11 @@ namespace hennythingIsPossible
                     case MenuEnum.CashOut:
                         customerOrder.RecalculateOrderTotals();
                         Receipt receiptObj = new Receipt(orderCalculations);
-                        receiptObj.SelectPaymentMethod();
                         orderCalculations.Totals();
-                        MenuView.DisplayCheckOutCart(receiptObj, orderCalculations);
+                        MenuView.DisplayCheckoutCart(receiptObj, orderCalculations);
+                        receiptObj.SelectPaymentMethod(orderCalculations);                
+                        MenuView.DisplayTransactionRecord(receiptObj, orderCalculations);
+                       
                         break;
                     case MenuEnum.Quit:
                         Console.WriteLine("\nBye!");
@@ -57,7 +57,5 @@ namespace hennythingIsPossible
 
             Console.ReadLine();
         }
-
-
     }
 }

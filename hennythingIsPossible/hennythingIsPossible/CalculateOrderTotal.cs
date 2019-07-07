@@ -8,25 +8,27 @@ namespace hennythingIsPossible
    public class CalculateOrderTotal 
     {
 
-        PaymentType obj = new PaymentType(); 
-        public double Subtotal;
-        public double SalesTaxPercent;
-        public double SalesTaxAmount;
-        public double GrandTotal;
-        public double CashAmount;
-        public double ChangeCash;
-        public List<Liquor> liquorOrderList = new List<Liquor>();
+        //PaymentType obj = new PaymentType(); 
+        public double Subtotal { get; set; }
+        public double SalesTaxPercent { get; set; } 
+        public double SalesTaxAmount { get; set; }
+        public double GrandTotal { get; set; }
+        public double AmountPaid { get; set; }
+        public double ChangeCash { get; set; }
+        public List<Liquor> liquorOrderList;
+
+        public List<Liquor> LiquorOrderListForCalculations { get; set; }
 
         public CalculateOrderTotal(OrderedItems order)
         {
-            liquorOrderList = order.LiquorOrderList;
+            LiquorOrderListForCalculations = order.LiquorOrderList;
             Totals();
         }
-        public CalculateOrderTotal(List<Liquor> liquorOrderList)
-        {
-            this.liquorOrderList = liquorOrderList;
-            Totals();
-        }
+        //public CalculateOrderTotal(List<Liquor> liquorOrderList)
+        //{
+        //    this.liquorOrderList = liquorOrderList;
+        //    Totals();
+        //}
 
         public CalculateOrderTotal()
         {
@@ -40,12 +42,16 @@ namespace hennythingIsPossible
             SalesTaxPercent = 0.06;
             GrandTotal = 0;
 
-            foreach (var liquor in liquorOrderList)
+            foreach (var liquor in LiquorOrderListForCalculations)
             {
-                Subtotal = liquor.Price + Subtotal;    
+                Subtotal = liquor.Price + Subtotal;
             }
             costs.Add(Subtotal);
             double sum = costs.Sum();
+
+            double amountOfSalesTax = Math.Round(sum * SalesTaxPercent, 2);
+            GrandTotal = sum + amountOfSalesTax;
+
             SalesTaxAmount = Math.Round(sum * SalesTaxPercent, 2);
             GrandTotal =sum + SalesTaxAmount;
 
@@ -61,7 +67,7 @@ namespace hennythingIsPossible
             else
             {
                 ChangeCash = cashAmount - GrandTotal;
-                this.CashAmount = cashAmount;
+                this.AmountPaid = cashAmount;
                 return true;
             }
         }

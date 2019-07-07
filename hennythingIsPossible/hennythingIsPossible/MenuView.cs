@@ -30,83 +30,110 @@ namespace hennythingIsPossible
             }
         }
 
-        public static void DisplayShoppingCart()
+        public static void DisplayCheckoutCart(Receipt receipt, CalculateOrderTotal orderCalculations)
         {
-
-        }
-
-        public static void DisplayCheckOutCart(Receipt receipt, CalculateOrderTotal orderCalculations)
-        {
-
-            ConsoleColor color = ConsoleColor.DarkRed;
+            Console.Clear();
+            ConsoleColor color = ConsoleColor.Red;
             Console.ForegroundColor = color;
-            string s = string.Format("{0,100}", "********TRANSACTION RECORD********");
-            Console.WriteLine(s);
-            color = ConsoleColor.DarkMagenta;
-            Console.ForegroundColor = color;
-            string order = string.Format("{0,-40} {1,-40} {2,-40}", "Name", "Quantity", "Price per item");
-            Console.WriteLine(order);
-           // color = ConsoleColor.Blue;
-            //Console.ForegroundColor = color;
+            Console.WriteLine();
+            Console.WriteLine("------------------------------- SHOPPING CART -------------------------------");
+            Console.WriteLine();
+
+            Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10} {5, 10}", "", "ID", "Name", "Quantity", "Unit Price", "Item Subtotal"));
+
+            int i = 0;
+
             foreach (var item in receipt.ReceiptLineItemsList)
             {
-                order = string.Format("{0,-40} {1,-40} {2,-40}", item.LiquorId, item.LiquorName, item.Quantity, item.UnitPrice, item.LineItemSubtotal);
-                Console.WriteLine(order);
+                Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10:C2} {5, 10:C2}", i + 1 + ".)", item.LiquorId, item.LiquorName, item.Quantity, item.UnitPrice, item.LineItemSubtotal));
+                i++;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Total units:", orderCalculations.LiquorOrderListForCalculations.Count));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Subtotal:", orderCalculations.Subtotal));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Sales Tax:", orderCalculations.SalesTaxAmount));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Grandtotal:", orderCalculations.GrandTotal));
+            Console.WriteLine("---------------------------");
+        }
+
+        public static void DisplayTransactionRecord(Receipt receipt, CalculateOrderTotal orderCalculations)
+        {
+            Console.Clear();
+
+            ConsoleColor color = ConsoleColor.Red;
+            Console.ForegroundColor = color;
+            Console.WriteLine("----------------------------- TRANSACTION RECORD -----------------------------");
+            Console.WriteLine();
+
+            color = ConsoleColor.DarkCyan;
+            Console.ForegroundColor = color;
+            //string order = string.Format("{0,-40} {1,-40} {2,-40}", "Name", "Quantity", "Price per item");
+            //Console.WriteLine(order);
+            Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10} {5, 10}", "", "ID", "Name", "Quantity", "Unit Price", "Item Subtotal"));
+            // color = ConsoleColor.Blue;
+            //Console.ForegroundColor = color;
+            int i = 0;
+            foreach (var item in receipt.ReceiptLineItemsList)
+            {
+                Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10:C2} {5, 10:C2}", i + 1 + ".)", item.LiquorId, item.LiquorName, item.Quantity, item.UnitPrice, item.LineItemSubtotal));
+                i++;
             }
             
             Console.WriteLine();
-            Console.WriteLine("Sales Tax: " + "$" + orderCalculations.SalesTaxAmount);
-            Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.Subtotal));
-            Console.WriteLine("Grand Total: " + "$" + orderCalculations.GrandTotal);
-            Console.WriteLine("Paid with " + "" + receipt.PaymentMethod);
-            if (receipt.PaymentMethod.Equals(PaymentMethodEnum.Cash))
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Total units:", orderCalculations.LiquorOrderListForCalculations.Count));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Subtotal:", orderCalculations.Subtotal));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Sales Tax:", orderCalculations.SalesTaxAmount));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Grandtotal:", orderCalculations.GrandTotal));
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Payment Method:", receipt.PaymentMethod));
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Payment Date:", receipt.PaymentDate));
+            Console.WriteLine(string.Format("{0, -15} {1} ", "Payment Status:", receipt.PaymentStatus));
+            Console.WriteLine("---------------------------");
 
+            switch (receipt.PaymentMethod)
             {
-                Console.WriteLine("Paid: " + "$" + orderCalculations.CashAmount);
-                Console.WriteLine("Change: " + "$" + orderCalculations.ChangeCash);
+                case PaymentMethodEnum.Cash:
+                    DisplayCashPaymentDetails(receipt, orderCalculations);
+                    break;
+                case PaymentMethodEnum.CreditCard:
+                    DisplayCreditPaymentDetails(receipt, orderCalculations);
+                    break;
+                case PaymentMethodEnum.Check:
+                    DisplayCheckPaymentDetails(receipt, orderCalculations);
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                Console.WriteLine("Paid " + "$" + orderCalculations.GrandTotal);
-            }
+            Console.WriteLine("---------------------------");
+            Console.ResetColor();
+        }
 
-            DateTime today = DateTime.Now;
-            Console.WriteLine(today);
+        public static void DisplayCashPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
+        {
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Cash Paid:", orderCalculations.AmountPaid));
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Change:", orderCalculations.ChangeCash));
 
+        }
 
-            //Console.WriteLine();
-            //Console.WriteLine("------------------------------- SHOPPING CART -------------------------------");
-            //Console.WriteLine();
+        public static void DisplayCheckPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
+        {
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Check Amt Paid:", orderCalculations.AmountPaid));
+            //add checking info
+        }
 
-            //Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10} {5, 10}", "", "ID" ,"Name", "Quantity", "Unit Price", "Item Subtotal"));
-
-            //int i = 0;
-
-            //foreach (var item in receipt.ReceiptLineItemsList)
-            //{
-            //    Console.WriteLine(string.Format("{0,-5} {1, -9} {2,-30} {3,-5} {4, 10:C2} {5, 10:C2}", i + 1 + ".)", item.LiquorId, item.LiquorName, item.Quantity, item.UnitPrice, item.LineItemSubtotal));
-            //    i++;
-            //}
-
-            //Console.WriteLine();
-            //Console.WriteLine("---------------------------");
-            //Console.WriteLine($"Total units in cart: {receipt.LiquorListForReceipt.Count}");
-            //Console.WriteLine(string.Format("{0} {1:C2} ", "Subtotal: ", orderCalculations.Subtotal));
-            //Console.WriteLine("---------------------------");
-
+        public static void DisplayCreditPaymentDetails(Receipt receipt, CalculateOrderTotal orderCalculations)
+        {
+            Console.WriteLine(string.Format("{0, -15} {1:C2} ", "Credit Amt Paid:", orderCalculations.AmountPaid));
+            //add masked credit card number
         }
 
         public static void DisplayCartSummary(OrderedItems order, CalculateOrderTotal calculatedOrder)
         {
             Console.WriteLine(string.Format("{0, 70} {1} {2, 15} {3:C2}","Items in cart: ", order.LiquorOrderList.Count, "Subtotal: ", order.SubTotal));
-
         }
 
-        public static void DisplayPaymentSummary(Receipt receipt)
-        {
-            Console.WriteLine($"Payment Method: {receipt.PaymentMethod}");
-            Console.WriteLine($"Payment Date {receipt.PaymentDate}");
-            Console.WriteLine($"Payment Status: ");
-        }
     }
 }
